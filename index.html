@@ -9,8 +9,8 @@
     <!-- Materialize compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Local stylesheet -->
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Crypto</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <title>Compare Your Currencies!</title>
 </head>
 
 <body>
@@ -20,8 +20,22 @@
         </div>
     </nav>
     
+
+    <div class="row">
+      <form id="currency1form" class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">textsms</i>
+            <input type="text" id="currency1-input" class="autocomplete">
+            <label for="autocomplete-input"></label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
     <!-- Page Content goes here -->
-    <div class="container">
+    <!-- <div class="container">
         <div class="row">
             <div class="col s12 m5">
               <div class="card-panel teal">
@@ -40,7 +54,7 @@
               </div>
             </div>
           </div>
-    </div>
+    </div> -->
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
