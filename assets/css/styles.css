@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#input-wrapper {
+  height: 50vh;
+}
+
+#form1 {
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: none; */
+  margin: 20px;
+}
+
+#form1 input[type="number"] {
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* border: 1px solid black; */
+  /* border-right: none; */
+  /* border-radius: 8px 0px 0px 8px; */
+  text-align: right;
+}
+
+#form1 input[type="text"] {
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* border: 1px solid black; */
+  /* border-radius: none; */
+}
+
+#swap-icon {
+  font-size: x-large;
+}

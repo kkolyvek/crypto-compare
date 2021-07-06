@@ -44,13 +44,10 @@ $('#currency1form').on('submit', function(event) {
     retrievePrice1(apiCall);
 });
 
+
 $(document).ready(function(){
-    $('input.autocomplete').autocomplete({
-      data: {
-        "bitcoin": null,
-      },
-    });
-  });
+   $('select').formSelect();
+});
 
 // *******
 // ON-LOAD
