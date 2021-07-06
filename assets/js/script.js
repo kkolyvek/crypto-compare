@@ -19,9 +19,10 @@ var coinGeckoBase = 'https://api.coingecko.com/api/v3/';
 
 function retrievePrice1(api) {
     fetch(api)
-        .then(response => response.json)
+        .then(response => response.json())
         .then(function (data) {
-            console.log(data)
+            console.log(data.tickers[0].last)
+            $('#result').text(`1 ${data.id} is ${data.tickers[0].last} USD`);
         });
 };
 
@@ -38,7 +39,20 @@ $('#currency1form').on('submit', function(event) {
     // ping API using user input
     var userInput1 = $('#currency1-input').val();
 
-    var apiCall = coinGeckoBase + 'coins/' + userInput1;
+    var apiCall = coinGeckoBase + 'coins/' + userInput1 + '?localization=false';
     console.log(apiCall)
     retrievePrice1(apiCall);
 });
+
+$(document).ready(function(){
+    $('input.autocomplete').autocomplete({
+      data: {
+        "bitcoin": null,
+      },
+    });
+  });
+
+// *******
+// ON-LOAD
+// *******
+$('#currency2-input').val('USD')
