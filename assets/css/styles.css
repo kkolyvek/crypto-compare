@@ -44,3 +44,12 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* Scroll box styling */
+.scrollbox {
+  height:60px;
+  width:70vw;
+  border:1px solid #ccc;
+  font:16px;
+  overflow:auto;
+}
