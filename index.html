@@ -29,21 +29,26 @@
 
         <!-- INPUT FORM 1 -->
         <div class="col s12 l5">
-          <form id="form1" class="row">
+          <form id="form1" class="row custom-form">
 
             <div class="input-field">
               <div class="col s3 l3">
-                <input type="number" name="" id="" placeholder="1">
+                <input type="number" name="" id="first-currency-amount">
               </div>
               <div class="col s9 l9">
-                <select>
-                  <option value="" disabled selected></option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
-                </select>
+                <input id="currency1-input" type="text" list="currency1-input-options">
+                <datalist id="currency1-input-options">
+                  <option value="bitcoin">
+                  <option value="ethereum">
+                  <option value="tether">
+                  <option value="binance-coin">
+                  <option value="cardano">
+                  <option value="xrp">
+                  <option value="dogecoin">
+                </datalist>
               </div>
             </div>
+            
           </form>
         </div>
   
@@ -55,19 +60,19 @@
 
         <!-- INPUT FORM 2 -->
         <div class="col s12 l5">
-          <form id="form1" class="row">
+          <form id="form2" class="row custom-form">
 
             <div class="input-field">
               <div class="col s3 l3">
-                <input type="number" name="" id="">
+                <input type="number" name="" id="second-currency-amount">
               </div>
               <div class="col s9 l9">
-                <select>
-                  <option value="" disabled selected></option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
-                </select>
+                <input id="currency2-input" type="text" list="currency2-input-options">
+                <datalist id="currency2-input-options">
+                  <option value="USD">
+                  <option value="EUR">
+                  <option value="JPY">
+                </datalist>
               </div>
             </div>
           </form>
