@@ -112,7 +112,30 @@ $('#first-currency-amount').val(1);
 $('#currency2-input').val('usd');
 
 
-//Code for creating card to display price information:
+//code for creating card to display price information:
+var marketDataTarget = 'harmony'
+
+var marketDataURL ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='+marketDataTarget+ '&order=market_cap_desc%2Cvolume_desc&per_page=1&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d'
+
+
+fetch(marketDataURL)
+  .then(resm => {
+      console.log(resm);
+      return resm.json();
+  })
+  .then(mkdata => {
+      console.log(mkdata);
+
+      $('#marketSummary').append('<img src="'+mkdata[0].image+'">')
+      $('#marketSummary').append('<p><strong>'+mkdata[0].name+'</strong></p>')
+      $('#marketSummary').append('<p> Current Price: $'+mkdata[0].current_price+'</p>')
+      $('#marketSummary').append('<p> Market Cap: '+mkdata[0].market_cap+'</p>')
+      $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
+      $('#marketSummary').append('<p> All Time High: $'+mkdata[0].ath+'</p>')
+      $('#marketSummary').append('<p> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+  })
+
+//code for creating top 7 list:
 
 var trendingURL = "https://api.coingecko.com/api/v3/search/trending"
 
@@ -125,10 +148,13 @@ function generateTrending (){
     .then(top7 => {
         console.log(top7);
         for (let i = 0; i < top7.coins.length; i++){
-            // console.log(top7.coins[i].item.name)
+            console.log(top7.coins[i].item.name)
             $('#trend').append('<li>' + top7.coins[i].item.name + '</li>')
         }
     })
 }
 
 generateTrending();
+
+
+
