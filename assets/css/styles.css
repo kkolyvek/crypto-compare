@@ -19,9 +19,6 @@
   margin: 0;
   padding-left: 10px;
   padding-right: 10px;
-  /* border: 1px solid black; */
-  /* border-right: none; */
-  /* border-radius: 8px 0px 0px 8px; */
   text-align: right;
 }
 
@@ -29,8 +26,6 @@
   margin: 0;
   padding-left: 10px;
   padding-right: 10px;
-  /* border: 1px solid black; */
-  /* border-radius: none; */
 }
 
 #swap-icon {

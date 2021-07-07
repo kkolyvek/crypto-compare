@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Local stylesheet -->
     <link rel="stylesheet" href="./assets/css/styles.css">
-    <title>Compare Your Currencies!</title>
-
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/4abdc4b91e.js" crossorigin="anonymous"></script>
+    
+    <title>Currency-Compare</title>
 </head>
 
 <body>
@@ -29,23 +29,14 @@
 
         <!-- INPUT FORM 1 -->
         <div class="col s12 l5">
-          <form id="form1" class="row custom-form">
+          <form id="form1" class="row custom-form" autocomplete="off">
 
-            <div class="input-field">
+            <div class="input-field valign-wrapper">
               <div class="col s3 l3">
                 <input type="number" name="" id="first-currency-amount">
               </div>
-              <div class="col s9 l9">
-                <input id="currency1-input" type="text" list="currency1-input-options">
-                <datalist id="currency1-input-options">
-                  <option value="bitcoin">
-                  <option value="ethereum">
-                  <option value="tether">
-                  <option value="binance-coin">
-                  <option value="cardano">
-                  <option value="xrp">
-                  <option value="dogecoin">
-                </datalist>
+              <div class="col s9 l9" id="currency1-input-wrapper">
+                <input type="text" id="currency1-input" class="autocomplete" id="currency1-input">
               </div>
             </div>
             
@@ -62,17 +53,17 @@
         <div class="col s12 l5">
           <form id="form2" class="row custom-form">
 
-            <div class="input-field">
+            <div class="input-field valign-wrapper">
               <div class="col s3 l3">
                 <input type="number" name="" id="second-currency-amount">
               </div>
               <div class="col s9 l9">
-                <input id="currency2-input" type="text" list="currency2-input-options">
-                <datalist id="currency2-input-options">
-                  <option value="USD">
-                  <option value="EUR">
-                  <option value="JPY">
-                </datalist>
+                <select id="currency2-input">
+                  <option value="" disabled selected></option>
+                  <option value="usd">United States Dollar</option>
+                  <option value="eur">Euro</option>
+                  <option value="jpy">Japanese Yen</option>
+                </select>
               </div>
             </div>
           </form>
@@ -90,81 +81,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <div class="container">
-      <div class="row">
-        <form id="currency1form" class="col s6">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">textsms</i>
-              <input type="text" id="currency1-input" class="autocomplete">
-              <label for="autocomplete-input"></label>
-            </div>
-          </div>
-        </form>
-        <form id="currency2form" class="col s6">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">textsms</i>
-              <input type="text" id="currency2-input" class="autocomplete">
-              <label for="autocomplete-input"></label>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="container">
-      <h3 id="result"></h3>
-    </div> -->
-
-
-    <!-- Page Content goes here -->
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col s12 m5">
-              <div class="card-panel teal">
-                <span id="currentVal" class="white-text">I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col s12 m5">
-              <div class="card-panel teal">
-                <span id="adlInfo" class="white-text">I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                </span>
-              </div>
-            </div>
-          </div>
-    </div> -->
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
