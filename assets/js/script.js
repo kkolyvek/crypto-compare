@@ -116,3 +116,24 @@ $('#currency2-input').val('usd');
 $(document).ready(function(){
   $('.datepicker').datepicker();
 });
+
+//Code for creating card to display price information:
+
+var trendingURL = "https://api.coingecko.com/api/v3/search/trending"
+
+function generateTrending (){
+    fetch (trendingURL)
+    .then(res => {
+        // console.log(res);
+        return res.json();
+    })
+    .then(top7 => {
+        console.log(top7);
+        for (let i = 0; i < top7.coins.length; i++){
+            // console.log(top7.coins[i].item.name)
+            $('#trend').append('<li>' + top7.coins[i].item.name + '</li>')
+        }
+    })
+}
+
+generateTrending();
