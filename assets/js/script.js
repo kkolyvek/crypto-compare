@@ -133,6 +133,28 @@ fetch(marketDataURL)
       $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
       $('#marketSummary').append('<p> All Time High: $'+mkdata[0].ath+'</p>')
       $('#marketSummary').append('<p> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+})
+
+var marketDataTarget2 = 'smooth-love-potion'
+
+var marketDataURL2 ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='+marketDataTarget2+ '&order=market_cap_desc%2Cvolume_desc&per_page=1&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d'
+
+
+fetch(marketDataURL2)
+  .then(resm => {
+      console.log(resm);
+      return resm.json();
+  })
+  .then(mkdata2 => {
+      console.log(mkdata2);
+
+      $('#marketSummary2').append('<img src="'+mkdata2[0].image+'">')
+      $('#marketSummary2').append('<p><strong>'+mkdata2[0].name+'</strong></p>')
+      $('#marketSummary2').append('<p> Current Price: $'+mkdata2[0].current_price+'</p>')
+      $('#marketSummary2').append('<p> Market Cap: '+mkdata2[0].market_cap+'</p>')
+      $('#marketSummary2').append('<p> Market Cap Rank: '+mkdata2[0].market_cap_rank+'</p>')
+      $('#marketSummary2').append('<p> All Time High: $'+mkdata2[0].ath+'</p>')
+      $('#marketSummary2').append('<p> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
   })
 
 //code for creating top 7 list:
