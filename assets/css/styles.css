@@ -107,3 +107,8 @@ input[type="number"] {
   margin: 20px;
   color: #fff;
 }
+
+/* Styling for card */
+.hide {
+  display: none;
+}
