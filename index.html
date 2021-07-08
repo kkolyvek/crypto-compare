@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,16 +14,15 @@
     <script src="https://kit.fontawesome.com/4abdc4b91e.js" crossorigin="anonymous"></script>
     
     <title>Currency-Compare</title>
-</head>
+  </head>
 
-<body>
-    <nav>
-        <div class="nav-wrapper #00c853 green accent-4">
-          <a href="#" class="brand-logo" style="margin-left: 20px">Currency Compare</a>
-        </div>
+  <body>
+    <nav class="nav-wrapper">
+      <h4 class="nav-content">Currency Compare</h4>
     </nav>
 
-    <div class="container">
+    <div class="container" style="min-height: 78vh;">
+      
       <!--Trending Crypto-->
       <div class="row scrollbox">
         <ol id="trend">
@@ -31,33 +30,30 @@
         </ol>
       </div>
 
-      <!-- INPUTS -->
-      <div id="input-wrapper" class="row valign-wrapper">
-
+      <!-- MAIN CONTENT -->
+      <div id="content-wrapper" class="row">
         <!-- INPUT FORM 1 -->
-        <div class="col s12 l5">
+        <div class="col s12 m12 l5 custom-form-wrapper">
           <form id="form1" class="row custom-form" autocomplete="off">
             <div class="input-field valign-wrapper">
-              <div class="col s3 l3">
-                <input type="number" name="" id="first-currency-amount">
-              </div>
-              <div class="col s9 l9">
-                <input type="text" id="currency1-input" class="autocomplete">
+              <div class="input-wrapper">
+                <input type="number" id="first-currency-amount" class="custom-number">
+                <input type="text" id="currency1-input" class="autocomplete custom-text">
               </div>
             </div>
-            
           </form>
         </div>
 
-        <!-- INPUT FORM 2 -->
-        <div class="col s12 l5">
-          <form id="form2" class="row custom-form">
+        <div class="col s12 m12 l2 custom-form-wrapper">
+          <h5>is</h5>
+        </div>
 
+        <!-- INPUT FORM 2 -->
+        <div class="col s12 m12 l5 custom-form-wrapper">
+          <form id="form2" class="row custom-form">
             <div class="input-field valign-wrapper">
-              <div class="col s3 l3">
+              <div class="input-wrapper">
                 <input type="number" name="" id="second-currency-amount">
-              </div>
-              <div class="col s9 l9">
                 <input type="text" id="currency2-input" class="autocomplete">
               </div>
             </div>
@@ -87,19 +83,11 @@
         </div>
       </div>
 
-      <footer class="page-footer #00c853 green accent-4" style="position:fixed;bottom:0;left:0;width:100%;">
-        <div class="container">
-          <div class="row">
-            <div class="col s12 l6">
-              <h5>Powered By:</h5>
-              <p><a href="https://www.coingecko.com/en">Coin Gecko</a></p>
-              <p><a href="https://www.frankfurter.app/">Frankfurter</a></p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
     
+    <div id="footer-content-wrapper">
+      <h6 id="footer-content">Data powered by: <a href="https://www.coingecko.com/en" target="_blank">CoinGecko</a> and <a href="https://www.frankfurter.app/" target="_blank">Frankfurter</a></h6>
+    </div>
 
     <!-- Moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -108,6 +96,6 @@
     <!-- Materialize compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- custom JavaScript -->
-    <script src="./assets/js/script.js"></script>
+    <!-- <script src="./assets/js/script.js"></script> -->
   </body>
 </html>

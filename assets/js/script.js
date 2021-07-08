@@ -55,7 +55,7 @@ if (!localStorage.getItem('currencyObject') || !localStorage.getItem('currencyOb
             localStorage.setItem('currencyObject', JSON.stringify(currencyObject));
             localStorage.setItem('currencyObjectRef', JSON.stringify(currencyObjectRef));
 
-            $('input.autocomplete').updateData(combinedObject);
+            $('input.autocomplete').updateData(combinedObject); // TODO: test
         });
 } else {
     var currencyObject = JSON.parse(localStorage.getItem('currencyObject'));
