@@ -8,8 +8,6 @@ var summary = $("#adlInfo");
 var currency1 = '';
 var currency2 = 'USD';
 
-var datepicker = moment();
-
 // CoinGecko API
 var coinGeckoBase = 'https://api.coingecko.com/api/v3/';
 
@@ -56,6 +54,8 @@ if (!localStorage.getItem('currencyObject') || !localStorage.getItem('currencyOb
     var currencyObjectRef = JSON.parse(localStorage.getItem('currencyObjectRef'));
 };
 
+// CoinGecko API
+var coinGeckoBase = 'https://api.coingecko.com/api/v3/';
 
 // *********
 // FUNCTIONS
@@ -68,6 +68,12 @@ function retrievePrice(api, first, second) {
             var vs_currencies = data[first];
             var val = (vs_currencies[second])
             $('#second-currency-amount').val(val * $('#first-currency-amount').val());
+function retrievePrice1(api) {
+    fetch(api)
+        .then(response => response.json())
+        .then(function (data) {
+            console.log(data.tickers[0].last)
+            $('#result').text(`1 ${data.id} is ${data.tickers[0].last} USD`);
         });
 };
 
@@ -93,6 +99,20 @@ $('#currency1-input').on('input', function(event) {
 });
 
 // materialize listeners
+$('#currency1form').on('submit', function(event) {
+    event.preventDefault();
+
+    // alert user if input is invalid
+
+    // ping API using user input
+    var userInput1 = $('#currency1-input').val();
+
+    var apiCall = coinGeckoBase + 'coins/' + userInput1 + '?localization=false';
+    console.log(apiCall)
+    retrievePrice1(apiCall);
+});
+
+
 $(document).ready(function(){
    $('select').formSelect();
 });
@@ -116,3 +136,8 @@ $('#currency2-input').val('usd');
 $(document).ready(function(){
   $('.datepicker').datepicker();
 });
+      
+// *******
+// ON-LOAD
+// *******
+$('#currency2-input').val('USD')
