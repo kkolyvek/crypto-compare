@@ -54,31 +54,39 @@
   height: 50vh;
 }
 
-#form1 {
+.custom-form {
   /* display: flex;
   flex-direction: row;
   flex-wrap: none; */
   margin: 20px;
 }
 
-#form1 input[type="number"] {
+.custom-form input[type="number"] {
   margin: 0;
   padding-left: 10px;
   padding-right: 10px;
-  /* border: 1px solid black; */
-  /* border-right: none; */
-  /* border-radius: 8px 0px 0px 8px; */
   text-align: right;
 }
 
-#form1 input[type="text"] {
+.custom-form input[type="text"] {
   margin: 0;
   padding-left: 10px;
   padding-right: 10px;
-  /* border: 1px solid black; */
-  /* border-radius: none; */
 }
 
 #swap-icon {
   font-size: x-large;
+}
+
+/* REMOVE UP-DOWN INCREMENT KEYS FROM NUMBER INPUT */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
