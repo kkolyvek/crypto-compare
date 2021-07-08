@@ -17,7 +17,6 @@
 </head>
 
 <body>
-  <!-- NAV/HEADER -->
     <nav>
         <div class="nav-wrapper #00c853 green accent-4">
           <a href="#" class="brand-logo" style="margin-left: 20px">Currency Compare</a>
@@ -38,23 +37,16 @@
         <!-- INPUT FORM 1 -->
         <div class="col s12 l5">
           <form id="form1" class="row custom-form" autocomplete="off">
-
             <div class="input-field valign-wrapper">
               <div class="col s3 l3">
                 <input type="number" name="" id="first-currency-amount">
               </div>
-              <div class="col s9 l9" id="currency1-input-wrapper">
-                <input type="text" id="currency1-input" class="autocomplete" id="currency1-input">
+              <div class="col s9 l9">
+                <input type="text" id="currency1-input" class="autocomplete">
               </div>
             </div>
             
           </form>
-        </div>
-  
-        <div class="col s12 l2">
-          <div class="center-align">
-            <i id="swap-icon" class="fas fa-arrows-alt-h"></i>
-          </div>
         </div>
 
         <!-- INPUT FORM 2 -->
@@ -66,12 +58,7 @@
                 <input type="number" name="" id="second-currency-amount">
               </div>
               <div class="col s9 l9">
-                <select id="currency2-input">
-                  <option value="" disabled selected></option>
-                  <option value="usd">United States Dollar</option>
-                  <option value="eur">Euro</option>
-                  <option value="jpy">Japanese Yen</option>
-                </select>
+                <input type="text" id="currency2-input" class="autocomplete">
               </div>
             </div>
           </form>
@@ -79,31 +66,27 @@
       </div>
 
 
-
-      <!-- ADDITIONAL INFORMATION CARD (CMM)  -->
-      <!-- <div class="row">
-        <div class="col s12 m12 l12">
-          <div class="card-panel #00c853 green accent-4">
-            <span class="white-text">
-              <div class="col s12 l5">
-                <form id="form1" class="row custom-form" autocomplete="off">
-                  <div class="input-field valign-wrapper">
-                    <div class="col s3 l3">
-                      <input type="number" name="" id="first-currency-amount" placeholder="$">
-                    </div>
-                    <div class="col s9 l9" id="currency1-input-wrapper">
-                      <input type="text" id="currency1-input" class="autocomplete" id="currency1-input" placeholder="Pick a cryptocurrency">
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <input type="text" class="datepicker" id="date-input" placeholder="Pick a Date">
-              <button> Button </button>
-            </span>
+      <!-- ADDITIONAL INFORMATION CARD -->
+      <div class="row">
+        <div class="col s12 m5">
+          <div class="card blue-grey darken-1">
+            <div id="marketSummary" class="card-content white-text">
+              <span class="card-title">Market Information</span>
+            </div>
           </div>
         </div>
-      </div> -->
-      
+      </div>
+
+      <div class="row">
+        <div class="col s12 m5">
+          <div class="card red darken-1">
+            <div id="marketSummary2" class="card-content white-text">
+              <span class="card-title">Market Information</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <footer class="page-footer #00c853 green accent-4" style="position:fixed;bottom:0;left:0;width:100%;">
         <div class="container">
           <div class="row">
@@ -117,11 +100,6 @@
       </footer>
     </div>
     
-    </div>
-    
-    
-    
-
 
     <!-- Moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -131,5 +109,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- custom JavaScript -->
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>
