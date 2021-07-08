@@ -1,4 +1,3 @@
-
 // ****************
 // GLOBAL VARIABLES
 // ****************
@@ -71,8 +70,6 @@ if (!localStorage.getItem('currencyObject') || !localStorage.getItem('currencyOb
         ...currencyObjectRef
     };
 };
-
-
 
 // *********
 // FUNCTIONS
@@ -263,6 +260,7 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
 // ***************
 // EVENT LISTENERS
 // ***************
+
 $('#first-currency-amount').on('input', function(event) {
     event.preventDefault();
     var firstCurrAmount = $('#first-currency-amount').val();
@@ -322,6 +320,26 @@ $(document).ready(function(){
   });
 
 
+$(document).ready(function(){
+    $('input.autocomplete').autocomplete({
+      data: coinObject
+    });
+  });
+
+
+// *******
+// ON LOAD
+// *******
+
+// default inputs
+$('#first-currency-amount').val(1);
+$('#currency2-input').val('usd');
+
+// cmm - for date picker on my card
+$(document).ready(function(){
+  $('.datepicker').datepicker();
+});
+      
 // *******
 // ON LOAD
 // *******

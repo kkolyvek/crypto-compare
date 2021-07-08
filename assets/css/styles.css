@@ -1,4 +1,50 @@
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  #input-wrapper {
+    height: 50vh;
+  }
+  
+  .custom-form {
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: none; */
+    margin: 20px;
+  }
+  
+  .custom-form input[type="number"] {
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: right;
+  }
+  
+  .custom-form input[type="text"] {
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  #swap-icon {
+    font-size: x-large;
+  }
+  
+  /* REMOVE UP-DOWN INCREMENT KEYS FROM NUMBER INPUT */
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
