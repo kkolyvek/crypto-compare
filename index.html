@@ -19,7 +19,7 @@
 <body>
     <nav>
         <div class="nav-wrapper #00c853 green accent-4">
-          <a href="#" class="brand-logo" style="margin-left: 20px">Logo</a>
+          <a href="#" class="brand-logo" style="margin-left: 20px">Currency Compare</a>
         </div>
     </nav>
 
@@ -37,23 +37,16 @@
         <!-- INPUT FORM 1 -->
         <div class="col s12 l5">
           <form id="form1" class="row custom-form" autocomplete="off">
-
             <div class="input-field valign-wrapper">
               <div class="col s3 l3">
                 <input type="number" name="" id="first-currency-amount">
               </div>
-              <div class="col s9 l9" id="currency1-input-wrapper">
-                <input type="text" id="currency1-input" class="autocomplete" id="currency1-input">
+              <div class="col s9 l9">
+                <input type="text" id="currency1-input" class="autocomplete">
               </div>
             </div>
             
           </form>
-        </div>
-  
-        <div class="col s12 l2">
-          <div class="center-align">
-            <i id="swap-icon" class="fas fa-arrows-alt-h"></i>
-          </div>
         </div>
 
         <!-- INPUT FORM 2 -->
@@ -65,18 +58,12 @@
                 <input type="number" name="" id="second-currency-amount">
               </div>
               <div class="col s9 l9">
-                <select id="currency2-input">
-                  <option value="" disabled selected></option>
-                  <option value="usd">United States Dollar</option>
-                  <option value="eur">Euro</option>
-                  <option value="jpy">Japanese Yen</option>
-                </select>
+                <input type="text" id="currency2-input" class="autocomplete">
               </div>
             </div>
           </form>
         </div>
       </div>
-
 
 
       <!-- ADDITIONAL INFORMATION CARD -->
@@ -99,20 +86,28 @@
           </div>
         </div>
       </div>
-    </div>
 
-  </div>
+      <footer class="page-footer #00c853 green accent-4" style="position:fixed;bottom:0;left:0;width:100%;">
+        <div class="container">
+          <div class="row">
+            <div class="col s12 l6">
+              <h5>Powered By:</h5>
+              <p><a href="https://www.coingecko.com/en">Coin Gecko</a></p>
+              <p><a href="https://www.frankfurter.app/">Frankfurter</a></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
     
 
-
-
-    <!--Moment.js-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Materialize compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- custom JavaScript -->
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>
