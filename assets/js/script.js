@@ -6,6 +6,7 @@ $('.modal').modal({
     dismissible: false
 });
 $('#loading-modal').modal('open');
+$('.tooltipped').tooltip();
 
 // autocomplete inputs
 $('#currency1-input').autocomplete({
@@ -111,8 +112,14 @@ if (!localStorage.getItem('coinObject') || !localStorage.getItem('coinObjectRef'
 
 // default inputs
 $(document).ready(function(){
+    // fill default values for inputs
     $('#first-currency-amount').val(1);
     $('#currency2-input').val('United States Dollar');
+    // disable the buttons by default
+    $('#btn1').addClass('disabled');
+    $('#btn2').addClass('disabled');
+    
+    // generate top 7 trending
     generateTrending();
 });
 
@@ -128,6 +135,18 @@ function compareInputs(amount1, input1, amount2, input2, updatedSide) {
     // make both inputs all lowercase to control for case sensitivity
     input1 = input1.toLowerCase();
     input2 = input2.toLowerCase();
+
+    // if either input is a CoinGecko data - enable market data button
+    if (coinObjectRef.hasOwnProperty(input1)) {
+        $('#btn1').removeClass('disabled');
+    } else {
+        $('#btn1').addClass('disabled');
+    };
+    if (coinObjectRef.hasOwnProperty(input2)) {
+        $('#btn2').removeClass('disabled');
+    } else {
+        $('#btn2').addClass('disabled');
+    };
 
     // Check to see if the inputs are valid and 1 of 2 amounts is filled - otherwise APIs can't be called
     if (!combinedObjectRef.hasOwnProperty(input1) || !combinedObjectRef.hasOwnProperty(input2)) {

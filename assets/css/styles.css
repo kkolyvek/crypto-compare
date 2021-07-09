@@ -97,6 +97,19 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+.custom-btn-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.custom-info::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f05a";
+  display: inline-block;
+  padding-left: 8px;
+  font-weight: 900;
+}
+
 /* ROTATE ICON 90 DEGREES TO MATCH PAGE */
 .custom-icon {
   font-size: 3rem;
