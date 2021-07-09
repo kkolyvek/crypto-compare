@@ -148,6 +148,9 @@ input[type="number"] {
   border-radius: 3px;
 }
 
+.boldName{
+  font-weight: bolder;
+}
 .goinUp{
   color: darkgreen;
 }
