@@ -378,43 +378,58 @@ function getMarketData1(event){
     var marketDataURL ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='+mDTfinal+ '&order=market_cap_desc%2Cvolume_desc&per_page=1&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d';
   
  fetch(marketDataURL)
-   .then(resm => {
+    .then(resm => {
        return resm.json();
-   })
-   .then(mkdata => {
-       $('#img1').attr("src", mkdata[0].image);
-       $('#mkn1').text(mkdata[0].name);
-       $('#cp1').text('Current Price: $'+mkdata[0].current_price);
-       if (!mkdata[0].market_cap){
-         $('#mc1').text('Market Cap: N/A')
-       } else {
-         $('#mc1').text('Market Cap: '+mkdata[0].market_cap)
-       }
-       if (!mkdata[0].market_cap_rank){
-         $('#mcr1').text('Market Cap Rank: N/A')
-       } else {
-         $('#mcr1').text('Market Cap Rank: '+mkdata[0].market_cap_rank)
-       }
-       $('#ath1').text('All Time High: $'+mkdata[0].ath);
-       $('#1h').text('1h Price Change: '+mkdata[0].price_change_percentage_1h_in_currency.toFixed(2)+'%');
-       $('#24h').text('24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%');
-       $('#7d').text('7d Price Change: '+mkdata[0].price_change_percentage_7d_in_currency.toFixed(2)+'%');
-
-       if (mkdata[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
-         $('#1h').addClass('goinDown')
-     }else{
-         $('#1h').addClass('goinUp')
-     }
-     if (mkdata[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
-         $('#24h').addClass('goinDown')
-     }else{
-         $('#24h').addClass('goinUp')
-     }
-     if (mkdata[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
-         $('#7d').addClass('goinDown')
-     }else{
-         $('#7d').addClass('goinUp')
-     }
+    })
+    .then(mkdata => {
+        $('#img1').attr("src", mkdata[0].image);
+        $('#mkn1').text(mkdata[0].name);
+        $('#cp1').text('Current Price: $'+mkdata[0].current_price.toFixed(2));
+        if (!mkdata[0].market_cap){
+            $('#mc1').text('Market Cap: N/A');
+        } else {
+            $('#mc1').text('Market Cap: '+mkdata[0].market_cap);
+        ;}
+        if (!mkdata[0].market_cap_rank){
+            $('#mcr1').text('Market Cap Rank: N/A');
+        } else {
+            $('#mcr1').text('Market Cap Rank: '+mkdata[0].market_cap_rank);
+        };
+        if (!mkdata[0].ath) {
+            $('#ath1').text('All Time High: N/A');
+        } else {
+            $('#ath1').text('All Time High: $'+mkdata[0].ath.toFixed(2));
+        };
+        if (!mkdata[0].price_change_percentage_1h_in_currency) {
+            $('#1h').text('1h Price Change: N/A');
+        } else {
+            $('#1h').text('1h Price Change: '+mkdata[0].price_change_percentage_1h_in_currency.toFixed(2)+'%');
+            if (mkdata[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
+                $('#1h').addClass('goinDown')
+            }else{
+                $('#1h').addClass('goinUp')
+            }
+        };
+        if (!mkdata[0].price_change_percentage_24h_in_currency) {
+            $('#24h').text('24h Price Change: N/A');
+        } else {
+            $('#24h').text('24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%');
+            if (mkdata[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
+                $('#24h').addClass('goinDown')
+            }else{
+                $('#24h').addClass('goinUp')
+            }
+        };
+        if (!mkdata[0].price_change_percentage_7d_in_currency) {
+            $('#7d').text('7d Price Change: N/A');
+        } else {
+            $('#7d').text('7d Price Change: '+mkdata[0].price_change_percentage_7d_in_currency.toFixed(2)+'%');
+            if (mkdata[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
+                $('#7d').addClass('goinDown')
+            }else{
+                $('#7d').addClass('goinUp')
+            }
+        };
 })}
 
 formEl1.addEventListener("submit", getMarketData1);
@@ -434,44 +449,57 @@ function getMarketData2 (event){
 
     fetch(marketDataURL2)
         .then(resm => {
-      return resm.json();
-         })
-         .then(mkdata2 => {
-        $('#img2').attr("src", mkdata2[0].image);
-        $('#mkn2').text(mkdata2[0].name);
-        $('#cp2').text('Current Price: $'+mkdata2[0].current_price);
-       
-        if (!mkdata2[0].market_cap){
-            $('#mc2').text('Market Cap: N/A')
-        }else{
-        $('#mc2').text('Market Cap: '+mkdata2[0].market_cap)
-        }
-        if (!mkdata2[0].market_cap_rank){
-            $('#mcr2').text('Market Cap Rank: N/A')
-        }else{
-            $('#mcr2').text('Market Cap Rank: '+mkdata2[0].market_cap_rank)
-        }
-
-        $('#ath2').text('All Time High: $'+mkdata2[0].ath)
-        $('#1h2').text('1h Price Change: '+mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2)+'%');
-        $('#24h2').text('24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%');
-        $('#7d2').text('7d Price Change: '+mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2)+'%');
-
-        if (mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
-            $('#1h2').addClass('goinDown')
-        }else{
-            $('#1h2').addClass('goinUp')
-        }
-        if (mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
-            $('#24h2').addClass('goinDown')
-        }else{
-            $('#24h2').addClass('goinUp')
-        }
-        if (mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
-            $('#7d2').addClass('goinDown')
-        }else{
-            $('#7d2').addClass('goinUp')
-        }
+            return resm.json();
+        })
+        .then(mkdata2 => {
+            $('#img2').attr("src", mkdata2[0].image);
+            $('#mkn2').text(mkdata2[0].name);
+            $('#cp2').text('Current Price: $'+mkdata2[0].current_price.toFixed(2));
+            if (!mkdata2[0].market_cap){
+                $('#mc2').text('Market Cap: N/A')
+            }else{
+                $('#mc2').text('Market Cap: '+mkdata2[0].market_cap)
+            }
+            if (!mkdata2[0].market_cap_rank){
+                $('#mcr2').text('Market Cap Rank: N/A')
+            }else{
+                $('#mcr2').text('Market Cap Rank: '+mkdata2[0].market_cap_rank)
+            }
+            if (!mkdata2[0].ath) {
+                $('#ath2').text('All Time High: N/A');
+            } else {
+                $('#ath2').text('All Time High: $'+mkdata2[0].ath.toFixed(2));
+            };
+            if (!mkdata2[0].price_change_percentage_1h_in_currency) {
+                $('#1h2').text('1h Price Change: N/A');
+            } else {
+                $('#1h2').text('1h Price Change: '+mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2)+'%');
+                if (mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
+                    $('#1h2').addClass('goinDown')
+                } else {
+                    $('#1h2').addClass('goinUp')
+                }
+            };
+            if (!mkdata2[0].price_change_percentage_24h_in_currency) {
+                $('#24h2').text('24h Price Change: N/A');
+            } else {
+                $('#24h2').text('24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%');
+                if (mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
+                    $('#24h2').addClass('goinDown')
+                }else{
+                    $('#24h2').addClass('goinUp')
+                }
+            };
+            if (!mkdata2[0].price_change_percentage_7d_in_currency) {
+                $('#7d2').text('7d Price Change: N/A');
+            } else {
+                $('#7d2').text('7d Price Change: '+mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2)+'%');
+                if (mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
+                    $('#7d2').addClass('goinDown')
+                }else{
+                    $('#7d2').addClass('goinUp')
+                }
+            };
 })}
 
 formEl2.addEventListener("submit", getMarketData2,);
