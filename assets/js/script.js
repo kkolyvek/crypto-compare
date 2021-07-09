@@ -386,8 +386,6 @@ function generateTrending (){
 }
 
 
-
-      
 // *******
 // ON LOAD
 // *******

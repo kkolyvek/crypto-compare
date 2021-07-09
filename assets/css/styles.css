@@ -87,10 +87,26 @@ input[type="number"] {
 }
 
 /* Scroll box styling */
-.scrollbox {
+/* .scrollbox {
   height:60px;
   width:70vw;
   border:1px solid #ccc;
   font:16px;
   overflow:auto;
+} */
+
+.list-inline {
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+  }
+  .list-inline > li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+/* Styling for card */
+.hide {
+  display: none;
 }

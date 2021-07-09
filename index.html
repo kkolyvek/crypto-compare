@@ -23,13 +23,15 @@
         </div>
     </nav>
 
+<!--Trending Crypto-->
+<div class="row scrollbox">
+  <ol class="list-inline" id="trend">
+  <li><strong>Top 7 Trending Crypto:</strong></li>
+  </ol>
+</div>
+
     <div class="container">
-      <!--Trending Crypto-->
-      <div class="row scrollbox">
-        <ol id="trend">
-        <li><strong>Top 7 Trending Crypto:</strong></li>
-        </ol>
-      </div>
+      
 
       <!-- INPUTS -->
       <div id="input-wrapper" class="row valign-wrapper">
@@ -45,7 +47,9 @@
                 <input type="text" id="currency1-input" class="autocomplete">
               </div>
             </div>
-            
+            <button id="btn1" class="btn waves-effect waves-light" type="submit" name="action">View Market Data
+              <i class="material-icons right">assessment</i>
+            </button>
           </form>
         </div>
 
@@ -61,6 +65,9 @@
                 <input type="text" id="currency2-input" class="autocomplete">
               </div>
             </div>
+            <button id="btn2" class="btn waves-effect waves-light" type="submit" name="action">View Market Data
+              <i class="material-icons right">assessment</i>
+            </button> 
           </form>
         </div>
       </div>
@@ -68,17 +75,15 @@
 
       <!-- ADDITIONAL INFORMATION CARD -->
       <div class="row">
-        <div class="col s12 m5">
+        <div id="card1" class="col s12 m6 hide">
           <div class="card blue-grey darken-1">
             <div id="marketSummary" class="card-content white-text">
-              <span class="card-title">Market Information</span>
+              
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col s12 m5">
+        <div id="card2" class="col s12 m6 hide">
           <div class="card red darken-1">
             <div id="marketSummary2" class="card-content white-text">
               <span class="card-title">Market Information</span>
@@ -105,6 +110,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- WebTicker jQuery -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.webticker/3.0.0/jquery.webticker.min.js"></script> -->
     <!-- Materialize compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- custom JavaScript -->
