@@ -148,6 +148,7 @@ function compareInputs(amount1, input1, amount2, input2, updatedSide) {
         $('#btn2').addClass('disabled');
     };
 
+
     // Check to see if the inputs are valid and 1 of 2 amounts is filled - otherwise APIs can't be called
     if (!combinedObjectRef.hasOwnProperty(input1) || !combinedObjectRef.hasOwnProperty(input2)) {
         return
@@ -211,7 +212,6 @@ function compareInputs(amount1, input1, amount2, input2, updatedSide) {
         };
     } else {
         // CASE WHERE BOTH INPUTS ARE NOT USD - TWO API CALLS REQUIRED
-
         retrieveDouble(origins, input1, input2, amount1, amount2, updatedSide);
     };
 };
@@ -286,7 +286,6 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
             APICallArray[i] = frankfurterBase + 'latest?from=' + inputArray[i] + '&to=USD';
         };
     };
-
     fetch(APICallArray[0])
         .then(response => response.json())
         .then(function (data) {
@@ -297,7 +296,6 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
                 var vs_currency = data['rates'];
                 var val_input1_USD = vs_currency['USD'];
             };
-
             fetch(APICallArray[1])
                 .then(response => response.json())
                 .then(function (data2) {
@@ -308,7 +306,7 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
                         var vs_currency = data2['rates'];
                         var val_input2_USD = vs_currency['USD'];
                     };
-
+              
                     // Once both currencies are fetched in terms of USD, calculate relative value and display
                     if (updatedSide === 1) {
                         var val2 = amountFirst * val_input1_USD / val_input2_USD;
@@ -360,12 +358,6 @@ $('#currency2-input').on('input', function(event) {
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
 });
 
-// // //test button
-// $('#currency1-input').on('input', function(event) {
-//     event.preventDefault();
-//     if($('#currency1-input').val()=);
-// });
-// // //test button
 
 
 // ***************
@@ -459,7 +451,6 @@ function getMarketData2 (event){
         }else{
             $('#marketSummary2').append('<p> Market Cap Rank: '+mkdata2[0].market_cap_rank+'</p>')
         }
-
         $('#marketSummary2').append('<p> All Time High: $'+mkdata2[0].ath+'</p>')
         $('#marketSummary2').append('<p id="1h2"> 1h Price Change: '+mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2)+'%</p>')
         $('#marketSummary2').append('<p id="24h2"> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
@@ -492,10 +483,16 @@ var trendingURL = "https://api.coingecko.com/api/v3/search/trending"
 
 function generateTrending() {
     fetch(trendingURL)
-    .then(res => res.json())
-    .then(top7 => {
+      .then(res => res.json())
+      .then(top7 => {
         for (let i = 0; i < top7.coins.length; i++){
-            $('#trend').append('<li>' + top7.coins[i].item.name + '</li>')
+            $('.trend').append('<a>' + top7.coins[i].item.name + '</a>')
         }
-    })
-};
+      })
+ };
+  
+// webticker for top 7 list
+$("#webticker-update").webTicker({
+  height:'75px'
+});
+
