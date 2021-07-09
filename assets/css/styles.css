@@ -12,22 +12,29 @@ body {
 }
 
 /* NAV BAR */
-.nav-wrapper {
+header {
   background: #a3c9a8;
   height: 12vh;
   width: 100%;
+}
 
+.custom-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  background: #a3c9a8;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
-.nav-content {
-  color: #fff;
+header h4 {
+  color: black;
   margin: 10px;
 }
 
-.icon { 
+.icon {
   width: 30px;
   height: 30px;
   margin: 10px;
@@ -133,6 +140,10 @@ input[type="number"] {
   transform: rotate(90deg);
 }
 
+.custom-icon:hover {
+  cursor: default;
+}
+
 /* CARD STYLING */
 
 .custom-card-image {
@@ -148,28 +159,25 @@ input[type="number"] {
   border-radius: 3px;
 }
 
-.goinUp{
+.goinUp {
   color: darkgreen;
 }
 
-.goinDown{
-  color:darkred;
+.goinDown {
+  color: darkred;
 }
+
 /* FOOTER */
 #footer-content-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   background: #a3c9a8;
-  width: 100%;
-  height: 10vh;
-  margin: 0;
 }
 
-#footer-content {
-  margin: 20px;
-  color: #fff;
+footer a {
+  color: #696969;
+}
+
+footer a:hover {
+  color: #909090;
 }
 
 /* Styling for card */
