@@ -294,6 +294,12 @@ $('#currency2-input').on('input', function(event) {
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
 });
 
+// // //test button
+// $('#currency1-input').on('input', function(event) {
+//     event.preventDefault();
+//     if($('#currency1-input').val()=);
+// });
+// // //test button
 
 // materialize listeners
 $(document).ready(function(){
@@ -352,8 +358,15 @@ fetch(marketDataURL)
       $('#marketSummary').append('<img src="'+mkdata[0].image+'">')
       $('#marketSummary').append('<p><strong>'+mkdata[0].name+'</strong></p>')
       $('#marketSummary').append('<p> Current Price: $'+mkdata[0].current_price+'</p>')
-      $('#marketSummary').append('<p> Market Cap: '+mkdata[0].market_cap+'</p>')
-      $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
+      if (!mkdata[0].market_cap){
+    }else{
+    $('#marketSummary').append('<p> Market Cap: '+mkdata[0].market_cap+'</p>')
+    }
+     if (!mkdata[0].market_cap_rank){
+
+        }else{
+        $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
+    }
       $('#marketSummary').append('<p> All Time High: $'+mkdata[0].ath+'</p>')
       $('#marketSummary').append('<p> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
 })}
@@ -387,13 +400,24 @@ function getMarketData2 (event){
         $('#marketSummary2').append('<img src="'+mkdata2[0].image+'">')
         $('#marketSummary2').append('<p><strong>'+mkdata2[0].name+'</strong></p>')
         $('#marketSummary2').append('<p> Current Price: $'+mkdata2[0].current_price+'</p>')
+       
+        if (!mkdata2[0].market_cap){
+        }else{
         $('#marketSummary2').append('<p> Market Cap: '+mkdata2[0].market_cap+'</p>')
-        $('#marketSummary2').append('<p> Market Cap Rank: '+mkdata2[0].market_cap_rank+'</p>')
+        }
+        if (!mkdata2[0].market_cap_rank){
+        }else{
+            $('#marketSummary2').append('<p> Market Cap Rank: '+mkdata2[0].market_cap_rank+'</p>')
+        }
+
         $('#marketSummary2').append('<p> All Time High: $'+mkdata2[0].ath+'</p>')
         $('#marketSummary2').append('<p> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
 })}
 
-formEl2.addEventListener("submit", getMarketData2);
+
+formEl2.addEventListener("submit", getMarketData2,);
+
+
 
 //code for creating top 7 list:
 
