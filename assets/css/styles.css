@@ -6,9 +6,14 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+/* background */
+body {
+  background-color: #ffffff;
+}
+
 /* NAV BAR */
 .nav-wrapper {
-  background: #327d2f;
+  background: #a3c9a8;
   height: 12vh;
   width: 100%;
 
@@ -19,7 +24,13 @@
 
 .nav-content {
   color: #fff;
-  margin: 20px;
+  margin: 10px;
+}
+
+.icon { 
+  width: 30px;
+  height: 30px;
+  margin: 10px;
 }
 
 /* SCROLL BOX STYLING */
@@ -124,13 +135,20 @@ input[type="number"] {
   border-radius: 3px;
 }
 
+.goinUp{
+  color: darkgreen;
+}
+
+.goinDown{
+  color:darkred;
+}
 /* FOOTER */
 #footer-content-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background: #327d2f;
+  background: #a3c9a8;
   width: 100%;
   height: 10vh;
   margin: 0;
@@ -144,6 +162,14 @@ input[type="number"] {
 /* Styling for card */
 .hide {
   display: none;
+}
+
+.cbg1 {
+  background-color: #a3c9a8;
+}
+
+.cbg2 {
+  background-color: #a3c9a8;
 }
 
 /* MEDIA SCREENSIZE QUERIES */
