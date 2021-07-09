@@ -341,6 +341,12 @@ $('#currency2-input').on('input', function(event) {
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
 });
 
+// // //test button
+// $('#currency1-input').on('input', function(event) {
+//     event.preventDefault();
+//     if($('#currency1-input').val()=);
+// });
+// // //test button
 
 
 // ***************
@@ -360,22 +366,27 @@ function getMarketData1(event){
     var mDTfinal = coinObjectRef[mDTlower];
 
     var marketDataURL ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='+mDTfinal+ '&order=market_cap_desc%2Cvolume_desc&per_page=1&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d';
-    
-    fetch(marketDataURL)
-        .then(resm => {
-            return resm.json();
-        })
-        .then(mkdata => {
-            $('#marketSummary').append('<span class="card-title center-align">Market Information</span>')
-            $('#marketSummary').append('<img class="custom-card-image" src="'+mkdata[0].image+'">')
-            $('#marketSummary').append('<p><strong>'+mkdata[0].name+':</strong></p>')
-            $('#marketSummary').append('<p> Current Price: $'+mkdata[0].current_price+'</p>')
-            $('#marketSummary').append('<p> Market Cap: '+mkdata[0].market_cap+'</p>')
-            $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
-            $('#marketSummary').append('<p> All Time High: $'+mkdata[0].ath+'</p>')
-            $('#marketSummary').append('<p> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
-        })
-};
+  
+fetch(marketDataURL)
+  .then(resm => {
+      return resm.json();
+  })
+  .then(mkdata => {
+      $('#marketSummary').append('<span class="card-title center-align">Market Information</span>')
+      $('#marketSummary').append('<img class="custom-card-image" src="'+mkdata[0].image+'">')
+      $('#marketSummary').append('<p><strong>'+mkdata[0].name+':</strong></p>')
+      $('#marketSummary').append('<p> Current Price: $'+mkdata[0].current_price+'</p>')
+      if (!mkdata[0].market_cap){
+      } else {
+        $('#marketSummary').append('<p> Market Cap: '+mkdata[0].market_cap+'</p>')
+      };
+      if (!mkdata[0].market_cap_rank){
+      } else {
+        $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
+      }
+      $('#marketSummary').append('<p> All Time High: $'+mkdata[0].ath+'</p>')
+      $('#marketSummary').append('<p> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+  })}
 
 formEl1.addEventListener("submit", getMarketData1);
 
@@ -395,21 +406,30 @@ function getMarketData2 (event){
 
     fetch(marketDataURL2)
         .then(resm => {
-            return resm.json();
-        })
-        .then(mkdata2 => {
-            $('#marketSummary2').append('<span class="card-title">Market Information</span>')
-            $('#marketSummary2').append('<img class="custom-card-image" src="'+mkdata2[0].image+'">')
-            $('#marketSummary2').append('<p><strong>'+mkdata2[0].name+':</strong></p>')
-            $('#marketSummary2').append('<p> Current Price: $'+mkdata2[0].current_price+'</p>')
-            $('#marketSummary2').append('<p> Market Cap: '+mkdata2[0].market_cap+'</p>')
+      return resm.json();
+         })
+         .then(mkdata2 => {
+        $('#marketSummary2').append('<span class="card-title">Market Information</span>')
+        $('#marketSummary2').append('<img class="custom-card-image" src="'+mkdata2[0].image+'">')
+        $('#marketSummary2').append('<p><strong>'+mkdata2[0].name+':</strong></p>')
+        $('#marketSummary2').append('<p> Current Price: $'+mkdata2[0].current_price+'</p>')
+       
+        if (!mkdata2[0].market_cap){
+        }else{
+        $('#marketSummary2').append('<p> Market Cap: '+mkdata2[0].market_cap+'</p>')
+        }
+        if (!mkdata2[0].market_cap_rank){
+        }else{
             $('#marketSummary2').append('<p> Market Cap Rank: '+mkdata2[0].market_cap_rank+'</p>')
-            $('#marketSummary2').append('<p> All Time High: $'+mkdata2[0].ath+'</p>')
-            $('#marketSummary2').append('<p> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
-        })
-};
+        }
 
-formEl2.addEventListener("submit", getMarketData2);
+        $('#marketSummary2').append('<p> All Time High: $'+mkdata2[0].ath+'</p>')
+        $('#marketSummary2').append('<p> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+})}
+
+formEl2.addEventListener("submit", getMarketData2,);
+
+
 
 //code for creating top 7 list:
 
