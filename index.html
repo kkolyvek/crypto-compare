@@ -1,114 +1,143 @@
-<body>
-  <div id="site-wrapper" style="overflow-x: hidden;">
-    <header>
-      <nav class="nav-wrapper">
-        <h4 class="nav-content">Currency Compare</h4>
-      </nav>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Local stylesheet -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4abdc4b91e.js" crossorigin="anonymous"></script>
+    
+    <title>Currency-Compare</title>
+  </head>
 
-    <!-- Trending Crypto Webticker -->
-    <div class="tickercontainer">
-      <ol id="webticker-update">
-      <li>Top 7 Trending Crypto:</li>
-      <li class="trend"></li>
-      </ol>
-    </div>
-
-    <main class="container" style="min-height: 78vh;">
-
+  <body>
+    <div id="site-wrapper" style="overflow-x: hidden;">
+      <header>
+        <nav class="nav-wrapper">
+          <img class="icon" src="/assets/images/icon.png">
+          <h4 class="nav-content">Currency Compare</h4>
+        </nav>
+      </header>
   
-      <!-- Loading Modal Structure -->
-      <div id="loading-modal" class="modal">
-        <div class="modal-content center-align">
-          <h4 style="margin-bottom: 30px;">Loading Data - Please Wait</h4>
-          <div class="preloader-wrapper active">
-            <div class="spinner-layer spinner-green-only">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
+      <!-- Trending Crypto Webticker -->
+      <div class="tickercontainer">
+        <ol id="webticker-update">
+          <li>Top 7 Trending Crypto:</li>
+          <li class="trend"></li>
+        </ol>
+      </div>
+      
+      <main class="container" style="min-height: 78vh;">
+  
+        <!-- Loading Modal Structure -->
+        <div id="loading-modal" class="modal">
+          <div class="modal-content center-align">
+            <h4 style="margin-bottom: 30px;">Loading Data - Please Wait</h4>
+            <div class="preloader-wrapper active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- MAIN CONTENT -->
-
-      <div id="content-wrapper" class="row">
-        <!-- INPUT FORM 1 -->
-        <div class="col s12 m12 l5 custom-form-wrapper">
-          <form id="form1" class="row custom-form" autocomplete="off">
-            <div class="input-field valign-wrapper">
-              <div class="input-wrapper">
-                <input type="number" step="any" id="first-currency-amount">
-                <input type="text" id="currency1-input" class="autocomplete">
+        
+        <!--Trending Crypto-->
+        <div class="row scrollbox">
+          <ol id="trend">
+          <li><strong>Top 7 Trending Crypto:</strong></li>
+          </ol>
+        </div>
+  
+        <!-- MAIN CONTENT -->
+  
+        <div id="content-wrapper" class="row">
+          <!-- INPUT FORM 1 -->
+          <div class="col s12 m12 l5 custom-form-wrapper">
+            <form id="form1" class="row custom-form" autocomplete="off">
+              <div class="input-field valign-wrapper">
+                <div class="input-wrapper">
+                  <input type="number" step="any" id="first-currency-amount">
+                  <input type="text" id="currency1-input" class="autocomplete">
+                </div>
+              </div>
+              <div class="custom-btn-row">
+                <button id="btn1" class="btn waves-effect waves-light" type="submit" name="action">View Market Data 
+                  <i class="material-icons right">assessment</i>
+                </button>
+                <span class="custom-info tooltipped" data-position="top" data-tooltip="Market data only available for CoinGecko data!"></span>
+              </div>
+            </form>
+          </div>
+  
+          <div class="col s12 m12 l2 custom-form-wrapper">
+            <i class="material-icons custom-icon">import_export</i>
+          </div>
+  
+          <!-- INPUT FORM 2 -->
+          <div class="col s12 m12 l5 custom-form-wrapper">
+            <form id="form2" class="row custom-form">
+              <div class="input-field valign-wrapper">
+                <div class="input-wrapper custom-input-wrapper-2">
+                  <input type="number" step="any" id="second-currency-amount">
+                  <input type="text" id="currency2-input" class="autocomplete">
+                </div>
+              </div>
+              <div class="custom-btn-row">
+                <button id="btn2" class="btn waves-effect waves-light" type="submit" name="action">View Market Data
+                  <i class="material-icons right">assessment</i>
+                </button> 
+                <span class="custom-info tooltipped" data-position="top" data-tooltip="Market data only available for CoinGecko data!"></span>
+              </div>
+            </form>
+          </div>
+        </div>
+  
+  
+        <!-- ADDITIONAL INFORMATION CARD -->
+        <div class="row">
+          <div id="card1" class="col s12 m6 hide">
+            <div class="card cbg1">
+              <div id="marketSummary" class="card-content">
               </div>
             </div>
-            <div class="button-wrapper">
-              <button id="btn1" class="btn waves-effect waves-light" type="submit" name="action">View Market Data
-                <i class="material-icons right">assessment</i>
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <div class="col s12 m12 l2 custom-form-wrapper">
-          <i class="material-icons custom-icon">import_export</i>
-        </div>
-
-        <!-- INPUT FORM 2 -->
-        <div class="col s12 m12 l5 custom-form-wrapper">
-          <form id="form2" class="row custom-form">
-            <div class="input-field valign-wrapper">
-              <div class="input-wrapper custom-input-wrapper-2">
-                <input type="number" step="any" id="second-currency-amount">
-                <input type="text" id="currency2-input" class="autocomplete">
+          </div>
+          <div id="card2" class="col s12 m6 hide">
+            <div class="card cbg2">
+              <div id="marketSummary2" class="card-content white-text">
               </div>
-            </div>
-            <button id="btn2" class="btn waves-effect waves-light" type="submit" name="action">View Market Data
-              <i class="material-icons right">assessment</i>
-            </button> 
-          </form>
-        </div>
-      </div>
-
-
-      <!-- ADDITIONAL INFORMATION CARD -->
-      <div class="row">
-        <div id="card1" class="col s12 m6 hide">
-          <div class="card blue-grey darken-1">
-            <div id="marketSummary" class="card-content white-text">
             </div>
           </div>
         </div>
-        <div id="card2" class="col s12 m6 hide">
-          <div class="card red darken-1">
-            <div id="marketSummary2" class="card-content white-text">
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </main>
-    
-    <footer id="footer-content-wrapper">
-      <h6 id="footer-content">Data powered by: <a href="https://www.coingecko.com/en" target="_blank">CoinGecko</a> and <a href="https://www.frankfurter.app/" target="_blank">Frankfurter</a></h6>
-    </footer>
-
-    
-    <!-- Moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- WebTicker jQuery -->
-    <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.webticker/3.0.0/jquery.webticker.min.js></script>
-    <!-- Materialize compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- custom JavaScript -->
-    <script src="./assets/js/script.js"></script>
-  </div>
-</body>
+  
+      </main>
+      
+      <footer id="footer-content-wrapper">
+        <h6 id="footer-content">Data powered by: <a href="https://www.coingecko.com/en" target="_blank">CoinGecko</a> and <a href="https://www.frankfurter.app/" target="_blank">Frankfurter</a></h6>
+        <div>Icons made by <a href="" title="Dimitry Miroliubov">Dimitry Miroliubov</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      </footer>
+  
+      <!-- Moment.js -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+      <!-- jQuery -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- jQuery Script -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.webticker/3.0.0/jquery.webticker.min.js"></script>
+      <!-- Materialize compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <!-- custom JavaScript -->
+      <script src="./assets/js/script.js"></script>
+    </div>
+  </body>
 </html>
