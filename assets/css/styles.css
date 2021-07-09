@@ -162,3 +162,18 @@ input[type="number"] {
     padding-top: 0;
   }
 }
+
+@media only screen and (max-width: 320px) {
+  /* special case for very small mobile screens */
+  .input-wrapper {
+    width: 330px;
+  }
+
+  .custom-form input[type="number"] {
+    width: 35%;
+  }
+
+  .custom-form input[type="text"] {
+    width: 65%;
+  }
+}
