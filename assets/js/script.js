@@ -396,10 +396,12 @@ fetch(marketDataURL)
       $('#marketSummary').append('<p><strong>'+mkdata[0].name+':</strong></p>')
       $('#marketSummary').append('<p> Current Price: $'+mkdata[0].current_price+'</p>')
       if (!mkdata[0].market_cap){
+        $('#marketSummary').append('<p> Market Cap: N/A </p>')
       } else {
         $('#marketSummary').append('<p> Market Cap: '+mkdata[0].market_cap+'</p>')
       };
       if (!mkdata[0].market_cap_rank){
+        $('#marketSummary').append('<p> Market Cap Rank: N/A </p>')
       } else {
         $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
       }
@@ -452,10 +454,12 @@ function getMarketData2 (event){
         $('#marketSummary2').append('<p> Current Price: $'+mkdata2[0].current_price+'</p>')
        
         if (!mkdata2[0].market_cap){
+            $('#marketSummary2').append('<p> Market Cap: Information Not Available</p>')
         }else{
         $('#marketSummary2').append('<p> Market Cap: '+mkdata2[0].market_cap+'</p>')
         }
         if (!mkdata2[0].market_cap_rank){
+            $('#marketSummary2').append('<p> Market Cap Rank: N/A</p>')
         }else{
             $('#marketSummary2').append('<p> Market Cap Rank: '+mkdata2[0].market_cap_rank+'</p>')
         }
