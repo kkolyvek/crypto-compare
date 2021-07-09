@@ -14,7 +14,7 @@ body {
 /* NAV BAR */
 header {
   background: #a3c9a8;
-  height: 12vh;
+  height: 175px;
   width: 100%;
 }
 
@@ -29,9 +29,17 @@ header {
   box-shadow: none;
 }
 
+.custom-nav-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 header h4 {
   color: black;
   margin: 10px;
+  font-weight: bold;
 }
 
 .icon {
@@ -40,13 +48,22 @@ header h4 {
   margin: 10px;
 }
 
-/* SCROLL BOX STYLING */
-.scrollbox {
-  height: 60px;
-  width: 100%;
-  border: 1px solid #ccc;
-  font: 16px;
-  overflow: auto;
+/* WEBTICKER STYLING */
+.tickercontainer {
+  background-color: #ffffff;
+}
+
+.trend > a {
+  padding-right: 10px;
+  padding-left: 10px;
+  font-size: 20px;
+  color: green;
+}
+
+li {
+  padding-right: 10px;
+  padding-left: 10px;
+  font-size: 20px;
 }
 
 /* MAIN CONTENT STYLING */
@@ -159,6 +176,10 @@ input[type="number"] {
   border-radius: 3px;
 }
 
+.boldName {
+  font-weight: bolder;
+}
+
 .goinUp {
   color: darkgreen;
 }
@@ -195,6 +216,15 @@ footer a:hover {
 
 /* MEDIA SCREENSIZE QUERIES */
 @media only screen and (max-width: 992px) {
+  .custom-nav {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .custom-nav-content-wrapper {
+    justify-content: space-around;
+  }
+
   .custom-icon {
     margin-top: 0;
 

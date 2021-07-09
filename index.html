@@ -13,7 +13,7 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/4abdc4b91e.js" crossorigin="anonymous"></script>
     
-    <title>Currency-Compare</title>
+    <title>Currency Compare</title>
   </head>
 
   <body>
@@ -21,12 +21,22 @@
 
       <header class="valign-wrapper">
         <nav class="container custom-nav">
-          <img class="icon" src="./assets/images/icon.png">
-          <h4 class="nav-content">Currency Compare</h4>
+          <div class="custom-nav-content-wrapper">
+            <img class="icon" src="./assets/images/icon.png">
+            <h4 class="nav-content">Currency Compare</h4>
+          </div>
         </nav>
       </header>
   
-      <main class="container" style="min-height: 78vh;">
+      <!-- Trending Crypto Webticker -->
+      <div class="tickercontainer">
+        <ol id="webticker-update">
+          <li>Top 7 Trending Crypto:</li>
+          <li class="trend"></li>
+        </ol>
+      </div>
+      
+      <main class="container" style="min-height: 60vh;">
   
         <!-- Loading Modal Structure -->
         <div id="loading-modal" class="modal">
@@ -46,12 +56,6 @@
           </div>
         </div>
         
-        <!--Trending Crypto-->
-        <div class="row scrollbox">
-          <ol id="trend">
-          <li><strong>Top 7 Trending Crypto:</strong></li>
-          </ol>
-        </div>
   
         <!-- MAIN CONTENT -->
   
@@ -103,12 +107,32 @@
           <div id="card1" class="col s12 m6 hide">
             <div class="card cbg1">
               <div id="marketSummary" class="card-content">
+                <span class="card-title center-align">Market Information</span>
+                <img class="custom-card-image" id='img1' src="">
+                <p id='mkn1' class="boldName"></p>
+                <p id='cp1'></p>
+                <p id='mc1'></p>
+                <p id='mcr1'></p>
+                <p id="ath1"></p>
+                <p id="1h"></p>
+                <p id="24h"></p>
+                <p id="7d"></p>
               </div>
             </div>
           </div>
           <div id="card2" class="col s12 m6 hide">
             <div class="card cbg2">
-              <div id="marketSummary2" class="card-content white-text">
+              <div id="marketSummary2" class="card-content">
+                <span class="card-title center-align">Market Information</span>
+                <img class="custom-card-image" id='img2' src="">
+                <p id='mkn2' class='boldName'></p>
+                <p id='cp2'></p>
+                <p id='mc2'></p>
+                <p id='mcr2'></p>
+                <p id="ath2"></p>
+                <p id="1h2"></p>
+                <p id="24h2"></p>
+                <p id="7d2"></p>
               </div>
             </div>
           </div>
@@ -137,6 +161,8 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
       <!-- jQuery -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- jQuery Script -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.webticker/3.0.0/jquery.webticker.min.js"></script>
       <!-- Materialize compiled and minified JavaScript -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <!-- custom JavaScript -->
