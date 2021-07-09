@@ -404,7 +404,25 @@ fetch(marketDataURL)
         $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
       }
       $('#marketSummary').append('<p> All Time High: $'+mkdata[0].ath+'</p>')
-      $('#marketSummary').append('<p> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+      $('#marketSummary').append('<p id="1h"> 1h Price Change: '+mkdata[0].price_change_percentage_1h_in_currency.toFixed(2)+'%</p>')
+      $('#marketSummary').append('<p id="24h"> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+      $('#marketSummary').append('<p id="7d"> 7d Price Change: '+mkdata[0].price_change_percentage_7d_in_currency.toFixed(2)+'%</p>')
+
+      if (mkdata[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
+        $('#1h').addClass('goinDown')
+    }else{
+        $('#1h').addClass('goinUp')
+    }
+    if (mkdata[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
+        $('#24h').addClass('goinDown')
+    }else{
+        $('#24h').addClass('goinUp')
+    }
+    if (mkdata[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
+        $('#7d').addClass('goinDown')
+    }else{
+        $('#7d').addClass('goinUp')
+    }
   })}
 
 formEl1.addEventListener("submit", getMarketData1);
@@ -428,7 +446,7 @@ function getMarketData2 (event){
       return resm.json();
          })
          .then(mkdata2 => {
-        $('#marketSummary2').append('<span class="card-title">Market Information</span>')
+        $('#marketSummary2').append('<span class="card-title center-align">Market Information</span>')
         $('#marketSummary2').append('<img class="custom-card-image" src="'+mkdata2[0].image+'">')
         $('#marketSummary2').append('<p><strong>'+mkdata2[0].name+':</strong></p>')
         $('#marketSummary2').append('<p> Current Price: $'+mkdata2[0].current_price+'</p>')
@@ -443,7 +461,25 @@ function getMarketData2 (event){
         }
 
         $('#marketSummary2').append('<p> All Time High: $'+mkdata2[0].ath+'</p>')
-        $('#marketSummary2').append('<p> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+        $('#marketSummary2').append('<p id="1h2"> 1h Price Change: '+mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2)+'%</p>')
+        $('#marketSummary2').append('<p id="24h2"> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+        $('#marketSummary2').append('<p id="7d2"> 7d Price Change: '+mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2)+'%</p>')
+
+        if (mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
+            $('#1h2').addClass('goinDown')
+        }else{
+            $('#1h2').addClass('goinUp')
+        }
+        if (mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
+            $('#24h2').addClass('goinDown')
+        }else{
+            $('#24h2').addClass('goinUp')
+        }
+        if (mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
+            $('#7d2').addClass('goinDown')
+        }else{
+            $('#7d2').addClass('goinUp')
+        }
 })}
 
 formEl2.addEventListener("submit", getMarketData2,);
