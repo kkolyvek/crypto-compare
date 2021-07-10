@@ -13,15 +13,18 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/4abdc4b91e.js" crossorigin="anonymous"></script>
     
-    <title>Currency-Compare</title>
+    <title>Currency Compare</title>
   </head>
 
   <body>
     <div id="site-wrapper" style="overflow-x: hidden;">
-      <header>
-        <nav class="nav-wrapper">
-          <img class="icon" src="/assets/images/icon.png">
-          <h4 class="nav-content">Currency Compare</h4>
+
+      <header class="valign-wrapper">
+        <nav class="container custom-nav">
+          <div class="custom-nav-content-wrapper">
+            <img class="icon" src="./assets/images/icon.png">
+            <h4 class="nav-content">Currency Compare</h4>
+          </div>
         </nav>
       </header>
   
@@ -33,7 +36,7 @@
         </ol>
       </div>
       
-      <main class="container" style="min-height: 78vh;">
+      <main class="container" style="min-height: 60vh;">
   
         <!-- Loading Modal Structure -->
         <div id="loading-modal" class="modal">
@@ -137,9 +140,21 @@
   
       </main>
       
-      <footer id="footer-content-wrapper">
-        <h6 id="footer-content">Data powered by: <a href="https://www.coingecko.com/en" target="_blank">CoinGecko</a> and <a href="https://www.frankfurter.app/" target="_blank">Frankfurter</a></h6>
-        <div>Icons made by <a href="" title="Dimitry Miroliubov">Dimitry Miroliubov</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
+      <footer id="footer-content-wrapper" class="page-footer">
+        <div class="container">
+          <div class="row center-align">
+            <div class="col s12" style="color: black;">
+              <h6>Data powered by <a href="https://www.coingecko.com/en" target="_blank">CoinGecko <img src="./assets/images/CoinGeckoIcon.png" alt="CoinGecko icon" width="18px"></a> and <a href="https://www.frankfurter.app/" target="_blank">Frankfurter <i class="fas fa-hotdog"></i></a></h6>
+              <h6>Icons made by Dimitry Miroliubov on <a href="https://www.flaticon.com/" target="_blank" title="Flaticon">Flaticon</a></h6>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright center-align" style="color: black;">
+          <div class="container">
+            Check out our source code <a href="https://github.com/kkolyvek/crypto-compare" target="_blank">on GitHub <img src="./assets/images/GitHub-Mark-32px.png" alt="GitHub icon" width="14px">!</a>
+          </div>
+        </div>
       </footer>
   
       <!-- Moment.js -->
