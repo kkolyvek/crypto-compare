@@ -1,4 +1,4 @@
-# **Currency Compare**
+<h1 align="center"><strong>Currency Compare</strong></h1>
 
 [https://kkolyvek.github.io/crypto-compare/](https://kkolyvek.github.io/crypto-compare/)
 
@@ -16,8 +16,25 @@ Currency Compare is responsive website designed to deliver information to the us
 
 In the modern world of cryptocurrencies, value can change at the blink of an eye. In an effort to stay on top of this, Currency Compare fetches fresh data everytime a currency is inputted.
 
+---
+
 ## Built With:
 
-## Built By:
+Currency Compare makes use of the following services:
 
-## Local Storage:
+- [CoinGecko](https://www.coingecko.com/en)
+- [Frankfurter](https://www.frankfurter.app/)
+- [Materialize CSS](https://materializecss.com/)
+
+---
+
+## Additional Information:
+
+Currency Compare makes use of your browser's local storage to speed up load times on successive visits to the page. If you no longer wish to store this data, delete the following objects from your storage:
+
+- `coinObject`
+- `coinObjectRef`
+- `currencyObject`
+- `currencyObjectRef`
+- `combinedObject`
+- `combinedObjectRef`
