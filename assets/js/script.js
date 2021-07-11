@@ -537,7 +537,9 @@ formEl2.addEventListener("submit", getMarketData2,);
 
 
 
-//code for creating top 7 list:
+// *******************
+// TOP 7 TRENDING LIST
+// *******************
 
 var trendingURL = "https://api.coingecko.com/api/v3/search/trending"
 
