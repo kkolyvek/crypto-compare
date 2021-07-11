@@ -69,6 +69,12 @@ li {
   font-size: 20px;
 }
 
+.topimg {
+  height: 18px;
+  width: 18px;
+  transform: scaleX(-1);
+}
+
 /* MAIN CONTENT STYLING */
 #content-wrapper {
   justify-content: center;
