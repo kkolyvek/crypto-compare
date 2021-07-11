@@ -1,6 +1,6 @@
 <h1 align="center"><strong>Currency Compare</strong></h1>
 
-[https://kkolyvek.github.io/crypto-compare/](https://kkolyvek.github.io/crypto-compare/)
+### [Link to Deployed Project](https://kkolyvek.github.io/crypto-compare/)
 
 Currency Compare is a website for market enthusiasts to quickly compare up-to-date values of currencies used all over the world. Begin typing into the currency search field to access over 8,000 cryptocurrencies as well as 33 conventional currencies. The site also allows the user to view basic market data of a selected cryptocurrency.
 
