@@ -363,6 +363,8 @@ $('#currency2-input').on('input', function(event) {
 // ***************
 // CARD GENERATION
 // ***************
+
+//Generate information for first card on button press
 var formEl1 = document.getElementById("form1");
 var btnEl1 = $("#btn1");
 
@@ -385,11 +387,12 @@ function getMarketData1(event){
         $('#img1').attr("src", mkdata[0].image);
         $('#mkn1').text(mkdata[0].name);
         $('#cp1').text('Current Price: $'+mkdata[0].current_price.toFixed(2));
+        //use of conditional statements if no data is available for these values
         if (!mkdata[0].market_cap){
             $('#mc1').text('Market Cap: N/A');
         } else {
             $('#mc1').text('Market Cap: '+mkdata[0].market_cap);
-        ;}
+        };
         if (!mkdata[0].market_cap_rank){
             $('#mcr1').text('Market Cap Rank: N/A');
         } else {
@@ -400,14 +403,17 @@ function getMarketData1(event){
         } else {
             $('#ath1').text('All Time High: $'+mkdata[0].ath.toFixed(2));
         };
+        //
         if (!mkdata[0].price_change_percentage_1h_in_currency) {
             $('#1h').text('1h Price Change: N/A');
         } else {
             $('#1h').text('1h Price Change: '+mkdata[0].price_change_percentage_1h_in_currency.toFixed(2)+'%');
             if (mkdata[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
                 $('#1h').addClass('goinDown')
+                $('#1h').removeClass('goinUp')
             }else{
                 $('#1h').addClass('goinUp')
+                $('#1h').removeClass('goinDown')
             }
         };
         if (!mkdata[0].price_change_percentage_24h_in_currency) {
@@ -416,8 +422,10 @@ function getMarketData1(event){
             $('#24h').text('24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%');
             if (mkdata[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
                 $('#24h').addClass('goinDown')
+                $('#24h').removeClass('goinUp')
             }else{
                 $('#24h').addClass('goinUp')
+                $('#24h').removeClass('goinDown')
             }
         };
         if (!mkdata[0].price_change_percentage_7d_in_currency) {
@@ -426,8 +434,10 @@ function getMarketData1(event){
             $('#7d').text('7d Price Change: '+mkdata[0].price_change_percentage_7d_in_currency.toFixed(2)+'%');
             if (mkdata[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
                 $('#7d').addClass('goinDown')
+                $('#7d').removeClass('goinUp')
             }else{
                 $('#7d').addClass('goinUp')
+                $('#7d').removeClass('goinDown')
             }
         };
 })}
@@ -476,8 +486,10 @@ function getMarketData2 (event){
                 $('#1h2').text('1h Price Change: '+mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2)+'%');
                 if (mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
                     $('#1h2').addClass('goinDown')
+                    $('#1h2').removeClass('goinUp')
                 } else {
                     $('#1h2').addClass('goinUp')
+                    $('#1h2').removeClass('goinDown')
                 }
             };
             if (!mkdata2[0].price_change_percentage_24h_in_currency) {
@@ -486,8 +498,10 @@ function getMarketData2 (event){
                 $('#24h2').text('24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%');
                 if (mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
                     $('#24h2').addClass('goinDown')
+                    $('#24h2').removeClass('goinUp')
                 }else{
                     $('#24h2').addClass('goinUp')
+                    $('#24h2').removeClass('goinDown')
                 }
             };
             if (!mkdata2[0].price_change_percentage_7d_in_currency) {
@@ -496,8 +510,10 @@ function getMarketData2 (event){
                 $('#7d2').text('7d Price Change: '+mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2)+'%');
                 if (mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
                     $('#7d2').addClass('goinDown')
+                    $('#7d2').removeClass('goinUp')
                 }else{
                     $('#7d2').addClass('goinUp')
+                    $('#7d2').removeClass('goinDown')
                 }
             };
 })}
