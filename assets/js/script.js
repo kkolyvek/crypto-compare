@@ -6,6 +6,7 @@ $('.modal').modal({
     dismissible: false
 });
 $('#loading-modal').modal('open');
+$('.tooltipped').tooltip();
 
 // autocomplete inputs
 $('#currency1-input').autocomplete({
@@ -111,8 +112,14 @@ if (!localStorage.getItem('coinObject') || !localStorage.getItem('coinObjectRef'
 
 // default inputs
 $(document).ready(function(){
+    // fill default values for inputs
     $('#first-currency-amount').val(1);
     $('#currency2-input').val('United States Dollar');
+    // disable the buttons by default
+    $('#btn1').addClass('disabled');
+    $('#btn2').addClass('disabled');
+    
+    // generate top 7 trending
     generateTrending();
 });
 
@@ -128,6 +135,19 @@ function compareInputs(amount1, input1, amount2, input2, updatedSide) {
     // make both inputs all lowercase to control for case sensitivity
     input1 = input1.toLowerCase();
     input2 = input2.toLowerCase();
+
+    // if either input is a CoinGecko data - enable market data button
+    if (coinObjectRef.hasOwnProperty(input1)) {
+        $('#btn1').removeClass('disabled');
+    } else {
+        $('#btn1').addClass('disabled');
+    };
+    if (coinObjectRef.hasOwnProperty(input2)) {
+        $('#btn2').removeClass('disabled');
+    } else {
+        $('#btn2').addClass('disabled');
+    };
+
 
     // Check to see if the inputs are valid and 1 of 2 amounts is filled - otherwise APIs can't be called
     if (!combinedObjectRef.hasOwnProperty(input1) || !combinedObjectRef.hasOwnProperty(input2)) {
@@ -192,7 +212,6 @@ function compareInputs(amount1, input1, amount2, input2, updatedSide) {
         };
     } else {
         // CASE WHERE BOTH INPUTS ARE NOT USD - TWO API CALLS REQUIRED
-
         retrieveDouble(origins, input1, input2, amount1, amount2, updatedSide);
     };
 };
@@ -267,7 +286,6 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
             APICallArray[i] = frankfurterBase + 'latest?from=' + inputArray[i] + '&to=USD';
         };
     };
-
     fetch(APICallArray[0])
         .then(response => response.json())
         .then(function (data) {
@@ -278,7 +296,6 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
                 var vs_currency = data['rates'];
                 var val_input1_USD = vs_currency['USD'];
             };
-
             fetch(APICallArray[1])
                 .then(response => response.json())
                 .then(function (data2) {
@@ -289,7 +306,7 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
                         var vs_currency = data2['rates'];
                         var val_input2_USD = vs_currency['USD'];
                     };
-
+              
                     // Once both currencies are fetched in terms of USD, calculate relative value and display
                     if (updatedSide === 1) {
                         var val2 = amountFirst * val_input1_USD / val_input2_USD;
@@ -341,12 +358,6 @@ $('#currency2-input').on('input', function(event) {
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
 });
 
-// // //test button
-// $('#currency1-input').on('input', function(event) {
-//     event.preventDefault();
-//     if($('#currency1-input').val()=);
-// });
-// // //test button
 
 
 // ***************
@@ -385,7 +396,25 @@ fetch(marketDataURL)
         $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
       }
       $('#marketSummary').append('<p> All Time High: $'+mkdata[0].ath+'</p>')
-      $('#marketSummary').append('<p> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+      $('#marketSummary').append('<p id="1h"> 1h Price Change: '+mkdata[0].price_change_percentage_1h_in_currency.toFixed(2)+'%</p>')
+      $('#marketSummary').append('<p id="24h"> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+      $('#marketSummary').append('<p id="7d"> 7d Price Change: '+mkdata[0].price_change_percentage_7d_in_currency.toFixed(2)+'%</p>')
+
+      if (mkdata[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
+        $('#1h').addClass('goinDown')
+    }else{
+        $('#1h').addClass('goinUp')
+    }
+    if (mkdata[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
+        $('#24h').addClass('goinDown')
+    }else{
+        $('#24h').addClass('goinUp')
+    }
+    if (mkdata[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
+        $('#7d').addClass('goinDown')
+    }else{
+        $('#7d').addClass('goinUp')
+    }
   })}
 
 formEl1.addEventListener("submit", getMarketData1);
@@ -409,7 +438,7 @@ function getMarketData2 (event){
       return resm.json();
          })
          .then(mkdata2 => {
-        $('#marketSummary2').append('<span class="card-title">Market Information</span>')
+        $('#marketSummary2').append('<span class="card-title center-align">Market Information</span>')
         $('#marketSummary2').append('<img class="custom-card-image" src="'+mkdata2[0].image+'">')
         $('#marketSummary2').append('<p><strong>'+mkdata2[0].name+':</strong></p>')
         $('#marketSummary2').append('<p> Current Price: $'+mkdata2[0].current_price+'</p>')
@@ -422,9 +451,26 @@ function getMarketData2 (event){
         }else{
             $('#marketSummary2').append('<p> Market Cap Rank: '+mkdata2[0].market_cap_rank+'</p>')
         }
-
         $('#marketSummary2').append('<p> All Time High: $'+mkdata2[0].ath+'</p>')
-        $('#marketSummary2').append('<p> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+        $('#marketSummary2').append('<p id="1h2"> 1h Price Change: '+mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2)+'%</p>')
+        $('#marketSummary2').append('<p id="24h2"> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
+        $('#marketSummary2').append('<p id="7d2"> 7d Price Change: '+mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2)+'%</p>')
+
+        if (mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
+            $('#1h2').addClass('goinDown')
+        }else{
+            $('#1h2').addClass('goinUp')
+        }
+        if (mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
+            $('#24h2').addClass('goinDown')
+        }else{
+            $('#24h2').addClass('goinUp')
+        }
+        if (mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
+            $('#7d2').addClass('goinDown')
+        }else{
+            $('#7d2').addClass('goinUp')
+        }
 })}
 
 formEl2.addEventListener("submit", getMarketData2,);
@@ -437,10 +483,16 @@ var trendingURL = "https://api.coingecko.com/api/v3/search/trending"
 
 function generateTrending() {
     fetch(trendingURL)
-    .then(res => res.json())
-    .then(top7 => {
+      .then(res => res.json())
+      .then(top7 => {
         for (let i = 0; i < top7.coins.length; i++){
-            $('#trend').append('<li>' + top7.coins[i].item.name + '</li>')
+            $('.trend').append('<a>' + top7.coins[i].item.name + '</a>')
         }
-    })
-};
+      })
+ };
+  
+// webticker for top 7 list
+$("#webticker-update").webTicker({
+  height:'75px'
+});
+
