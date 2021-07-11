@@ -53,11 +53,14 @@ header h4 {
   background-color: #ffffff;
 }
 
-.trend > a {
+.trend-btn {
+  background: none;
+  box-shadow: none;
+  border: 1px solid #ccc;
   padding-right: 10px;
   padding-left: 10px;
-  font-size: 20px;
-  color: green;
+  font-size: 15px;
+  color: black;
 }
 
 li {

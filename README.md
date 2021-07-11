@@ -8,7 +8,7 @@ Currency Compare is a website for market enthusiasts to quickly compare up-to-da
 
 ## About
 
-Currency Compare is responsive website designed to deliver information to the user as seamlessly as possible. Any time a valid currency is typed into the input field or selected from the autocomplete list, the corresponding data is automatically updated and displayed; this allows the users to quickly check on all the currencies they may be interested in.
+Currency Compare is responsive, client side website designed to deliver information to the user as seamlessly as possible. Any time a valid currency is typed into the input field or selected from the autocomplete list, the corresponding data is automatically updated and displayed; this allows the users to quickly check on all the currencies they may be interested in.
 
 In the modern world of cryptocurrencies, value can change at the blink of an eye. In an effort to stay on top of this, Currency Compare fetches fresh data everytime a currency is inputted.
 

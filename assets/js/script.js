@@ -12,9 +12,9 @@ $('.tooltipped').tooltip();
 $('#currency1-input').autocomplete({
     data: combinedObject,
     onAutocomplete: function() {
-        var firstCurrAmount = $('#first-currency-amount').val();
+        var firstCurrAmount = parseFloat($('#first-currency-amount').val());
         var firstCurr = $('#currency1-input').val();
-        var secondCurrAmount = $('#second-currency-amount').val();
+        var secondCurrAmount = parseFloat($('#second-currency-amount').val());
         var secondCurr = $('#currency2-input').val();
         compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 1);
     }
@@ -22,9 +22,9 @@ $('#currency1-input').autocomplete({
 $('#currency2-input').autocomplete({
     data: combinedObject,
     onAutocomplete: function() {
-        var firstCurrAmount = $('#first-currency-amount').val();
+        var firstCurrAmount = parseFloat($('#first-currency-amount').val());
         var firstCurr = $('#currency1-input').val();
-        var secondCurrAmount = $('#second-currency-amount').val();
+        var secondCurrAmount = parseFloat($('#second-currency-amount').val());
         var secondCurr = $('#currency2-input').val();
         compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
     }
@@ -113,7 +113,7 @@ if (!localStorage.getItem('coinObject') || !localStorage.getItem('coinObjectRef'
 // default inputs
 $(document).ready(function(){
     // fill default values for inputs
-    $('#first-currency-amount').val(1);
+    $('#first-currency-amount').val(formatNumber(1));
     $('#currency2-input').val('United States Dollar');
     // disable the buttons by default
     $('#btn1').addClass('disabled');
@@ -161,9 +161,9 @@ function compareInputs(amount1, input1, amount2, input2, updatedSide) {
     if (input1 === input2) {
         // set opposing amount to inputted amount
         if (updatedSide === 1) {
-            $('#second-currency-amount').val(amount1);
+            $('#second-currency-amount').val(formatNumber(amount1));
         } else {
-            $('#first-currency-amount').val(amount2);
+            $('#first-currency-amount').val(formatNumber(amount2));
         };
         return
     }
@@ -225,9 +225,9 @@ function retrieveSingleCG(api, inputFirst, inputSecond, amountFirst, amountSecon
                 var vs_currency = data[combinedObjectRef[inputSecond]];
                 var val_input2_USD = vs_currency['usd'];
                 if (updatedSide === 1) {
-                    $('#second-currency-amount').val(amountFirst * 1 / val_input2_USD);
+                    $('#second-currency-amount').val(formatNumber(amountFirst * 1 / val_input2_USD));
                 } else {
-                    $('#first-currency-amount').val(amountSecond * val_input2_USD);
+                    $('#first-currency-amount').val(formatNumber(amountSecond * val_input2_USD));
                 };
             });
     } else {
@@ -238,9 +238,9 @@ function retrieveSingleCG(api, inputFirst, inputSecond, amountFirst, amountSecon
                 var vs_currency = data[combinedObjectRef[inputFirst]];
                 var val_input1_USD = vs_currency['usd'];
                 if (updatedSide === 1) {
-                    $('#second-currency-amount').val(amountFirst * val_input1_USD);
+                    $('#second-currency-amount').val(formatNumber(amountFirst * val_input1_USD));
                 } else {
-                    $('#first-currency-amount').val(amountSecond * 1 / val_input1_USD);
+                    $('#first-currency-amount').val(formatNumber(amountSecond * 1 / val_input1_USD));
                 };
             });
     };
@@ -255,9 +255,9 @@ function retrieveSingleF(api, inputFirst, inputSecond, amountFirst, amountSecond
                 var vs_currency = data['rates'];
                 var val_input2_USD = vs_currency['USD'];
                 if (updatedSide === 1) {
-                    $('#second-currency-amount').val(amountFirst * 1 / val_input2_USD);
+                    $('#second-currency-amount').val(formatNumber(amountFirst * 1 / val_input2_USD));
                 } else {
-                    $('#first-currency-amount').val(amountSecond * val_input2_USD);
+                    $('#first-currency-amount').val(formatNumber(amountSecond * val_input2_USD));
                 };
             });
     } else {
@@ -268,9 +268,9 @@ function retrieveSingleF(api, inputFirst, inputSecond, amountFirst, amountSecond
                 var vs_currency = data['rates'];
                 var val_input1_USD = vs_currency['USD'];
                 if (updatedSide === 1) {
-                    $('#second-currency-amount').val(amountFirst * val_input1_USD);
+                    $('#second-currency-amount').val(formatNumber(amountFirst * val_input1_USD));
                 } else {
-                    $('#first-currency-amount').val(amountSecond * 1 / val_input1_USD);
+                    $('#first-currency-amount').val(formatNumber(amountSecond * 1 / val_input1_USD));
                 };
             });
     };
@@ -310,15 +310,46 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
                     // Once both currencies are fetched in terms of USD, calculate relative value and display
                     if (updatedSide === 1) {
                         var val2 = amountFirst * val_input1_USD / val_input2_USD;
-                        $('#second-currency-amount').val(val2);
+                        $('#second-currency-amount').val(formatNumber(val2));
                     } else {
                         var val1 = amountSecond * val_input2_USD / val_input1_USD;
-                        $('#first-currency-amount').val(val1);
+                        $('#first-currency-amount').val(formatNumber(val1));
                     };
                 });
         });
 };
 
+function formatNumber(currAmount) {
+    // formats the currency amount to be 8 digits (including decimal points) at most
+
+    // if number is an integer, just have 2 decimal points
+    if (((currAmount % 1) === 0) && (currAmount <= 10**4)) {
+        return currAmount.toFixed(2);
+    };
+
+    // if the number is extremely small or large, use exponential notation
+    if (currAmount >= 10**10) {
+        return currAmount.toExponential(2);
+    };
+    if (currAmount >= 10**7) {
+        return currAmount.toExponential(3);
+    };
+
+    if (currAmount <= 10**-10) {
+        return currAmount.toExponential(2);
+    };
+    if (currAmount <= 10**-7) {
+        return currAmount.toExponential(3);
+    };
+    
+    var digitCount = 1;
+    var currAmountTemp = currAmount;
+    while (currAmountTemp / 10 >= 1) {
+        currAmountTemp /= 10;
+        digitCount++;
+    };
+    return parseFloat(currAmount.toFixed(8 - (digitCount + 1)));
+};
 
 
 // ***************
@@ -327,33 +358,33 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
 
 $('#first-currency-amount').on('input', function(event) {
     event.preventDefault();
-    var firstCurrAmount = $('#first-currency-amount').val();
+    var firstCurrAmount = parseFloat($('#first-currency-amount').val());
     var firstCurr = $('#currency1-input').val();
-    var secondCurrAmount = $('#second-currency-amount').val();
+    var secondCurrAmount = parseFloat($('#second-currency-amount').val());
     var secondCurr = $('#currency2-input').val();
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 1);
 });
 $('#currency1-input').on('input', function(event) {
     event.preventDefault();
-    var firstCurrAmount = $('#first-currency-amount').val();
+    var firstCurrAmount = parseFloat($('#first-currency-amount').val());
     var firstCurr = $('#currency1-input').val();
-    var secondCurrAmount = $('#second-currency-amount').val();
+    var secondCurrAmount = parseFloat($('#second-currency-amount').val());
     var secondCurr = $('#currency2-input').val();
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 1);
 });
 $('#second-currency-amount').on('input', function(event) {
     event.preventDefault();
-    var firstCurrAmount = $('#first-currency-amount').val();
+    var firstCurrAmount = parseFloat($('#first-currency-amount').val());
     var firstCurr = $('#currency1-input').val();
-    var secondCurrAmount = $('#second-currency-amount').val();
+    var secondCurrAmount = parseFloat($('#second-currency-amount').val());
     var secondCurr = $('#currency2-input').val();
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
 });
 $('#currency2-input').on('input', function(event) {
     event.preventDefault();
-    var firstCurrAmount = $('#first-currency-amount').val();
+    var firstCurrAmount = parseFloat($('#first-currency-amount').val());
     var firstCurr = $('#currency1-input').val();
-    var secondCurrAmount = $('#second-currency-amount').val();
+    var secondCurrAmount = parseFloat($('#second-currency-amount').val());
     var secondCurr = $('#currency2-input').val();
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
 });
@@ -515,7 +546,18 @@ function generateTrending() {
       .then(res => res.json())
       .then(top7 => {
         for (let i = 0; i < top7.coins.length; i++){
-            $('.trend').append('<a>' + top7.coins[i].item.name + '</a>')
+            // $('.trend').append('<a>' + top7.coins[i].item.name + '</a>')
+            $('#trend' + i).html(top7.coins[i].item.name);
+            $('#trend' + i).on('click', function (event) {
+                event.preventDefault();
+
+                $('#currency1-input').val(top7.coins[i].item.name);
+                var firstCurrAmount = parseFloat($('#first-currency-amount').val());
+                var firstCurr = $('#currency1-input').val();
+                var secondCurrAmount = parseFloat($('#second-currency-amount').val());
+                var secondCurr = $('#currency2-input').val();
+                compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 1);
+            });
         }
       })
  };
