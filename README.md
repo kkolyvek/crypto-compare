@@ -35,7 +35,7 @@ Currency Compare makes use of your browser's local storage to speed up load time
 - `combinedObject`
 - `combinedObjectRef`
 
-## Licence: 
+## License: 
 
 This is free and unencumbered software released into the public domain.
 
