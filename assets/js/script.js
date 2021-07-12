@@ -422,7 +422,7 @@ function getMarketData1(event){
         if (!mkdata[0].market_cap){
             $('#mc1').text('Market Cap: N/A');
         } else {
-            $('#mc1').text('Market Cap: '+mkdata[0].market_cap);
+            $('#mc1').text('Market Cap: $'+mkdata[0].market_cap);
         };
         if (!mkdata[0].market_cap_rank){
             $('#mcr1').text('Market Cap Rank: N/A');
@@ -499,7 +499,7 @@ function getMarketData2 (event){
             if (!mkdata2[0].market_cap){
                 $('#mc2').text('Market Cap: N/A')
             }else{
-                $('#mc2').text('Market Cap: '+mkdata2[0].market_cap)
+                $('#mc2').text('Market Cap: $'+mkdata2[0].market_cap)
             }
             if (!mkdata2[0].market_cap_rank){
                 $('#mcr2').text('Market Cap Rank: N/A')
@@ -553,7 +553,9 @@ formEl2.addEventListener("submit", getMarketData2,);
 
 
 
-//code for creating top 7 list:
+// *******************
+// TOP 7 TRENDING LIST
+// *******************
 
 var trendingURL = "https://api.coingecko.com/api/v3/search/trending"
 

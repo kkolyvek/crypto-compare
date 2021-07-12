@@ -1,6 +1,6 @@
 <h1 align="center"><strong>Currency Compare</strong></h1>
 
-[https://kkolyvek.github.io/crypto-compare/](https://kkolyvek.github.io/crypto-compare/)
+### [Link to Deployed Project](https://kkolyvek.github.io/crypto-compare/)
 
 Currency Compare is a website for market enthusiasts to quickly compare up-to-date values of currencies used all over the world. Begin typing into the currency search field to access over 8,000 cryptocurrencies as well as 33 conventional currencies. The site also allows the user to view basic market data of a selected cryptocurrency.
 
@@ -10,7 +10,11 @@ Currency Compare is a website for market enthusiasts to quickly compare up-to-da
 
 Currency Compare is responsive, client side website designed to deliver information to the user as seamlessly as possible. Any time a valid currency is typed into the input field or selected from the autocomplete list, the corresponding data is automatically updated and displayed; this allows the users to quickly check on all the currencies they may be interested in.
 
-In the modern world of cryptocurrencies, value can change at the blink of an eye. In an effort to stay on top of this, Currency Compare fetches fresh data everytime a currency is inputted.
+In the modern world of cryptocurrencies, value can change at the blink of an eye. In an effort to stay on top of this, Currency Compare fetches fresh data everytime a currency is inputted and is updated live. For all major cryptocurrencies and many minor ones there is also robust historical data available. If a user is wants more information about any of the cryptocurrencies they can press the "View Market Data" button to see percentage price changes over the course of 1 hour, 24 hours, and over the course of 7 days. There is also Market Cap and Market Cap Rank data provided for all of the major cryptos. The value of the standard world currencies are updated everyday at 7am PST. 
+
+If a user visits the website and needs some inspiration they can see the top 7 trending cryptocurrenies and start their inquiry there with the press of a button! 
+
+
 
 ## Built With:
 
@@ -19,6 +23,7 @@ Currency Compare makes use of the following services:
 - [CoinGecko](https://www.coingecko.com/en)
 - [Frankfurter](https://www.frankfurter.app/)
 - [Materialize CSS](https://materializecss.com/)
+- [WebTicker](https://maze.digital/webticker/)
 
 ## Additional Information:
 
@@ -30,3 +35,30 @@ Currency Compare makes use of your browser's local storage to speed up load time
 - `currencyObjectRef`
 - `combinedObject`
 - `combinedObjectRef`
+
+## License: 
+
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <https://unlicense.org>

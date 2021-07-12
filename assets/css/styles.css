@@ -76,6 +76,7 @@ li {
   font-size: 20px;
 }
 
+<<<<<<< HEAD
 /* WEBTICKER STYLING */
 .tickercontainer {
   background-color: white;
@@ -95,6 +96,13 @@ li {
   font-size: 20px;
 }
 
+=======
+.topimg {
+  height: 18px;
+  width: 18px;
+  transform: scaleX(-1);
+}
+>>>>>>> 13447175abd2a007e537bf24d8364c77bf9ec31a
 
 /* MAIN CONTENT STYLING */
 #content-wrapper {
