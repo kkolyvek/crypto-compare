@@ -23,6 +23,7 @@ Currency Compare makes use of the following services:
 - [CoinGecko](https://www.coingecko.com/en)
 - [Frankfurter](https://www.frankfurter.app/)
 - [Materialize CSS](https://materializecss.com/)
+- [WebTicker](https://maze.digital/webticker/)
 
 ## Additional Information:
 
