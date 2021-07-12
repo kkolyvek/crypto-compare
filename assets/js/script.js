@@ -12,9 +12,9 @@ $('.tooltipped').tooltip();
 $('#currency1-input').autocomplete({
     data: combinedObject,
     onAutocomplete: function() {
-        var firstCurrAmount = $('#first-currency-amount').val();
+        var firstCurrAmount = parseFloat($('#first-currency-amount').val());
         var firstCurr = $('#currency1-input').val();
-        var secondCurrAmount = $('#second-currency-amount').val();
+        var secondCurrAmount = parseFloat($('#second-currency-amount').val());
         var secondCurr = $('#currency2-input').val();
         compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 1);
     }
@@ -22,9 +22,9 @@ $('#currency1-input').autocomplete({
 $('#currency2-input').autocomplete({
     data: combinedObject,
     onAutocomplete: function() {
-        var firstCurrAmount = $('#first-currency-amount').val();
+        var firstCurrAmount = parseFloat($('#first-currency-amount').val());
         var firstCurr = $('#currency1-input').val();
-        var secondCurrAmount = $('#second-currency-amount').val();
+        var secondCurrAmount = parseFloat($('#second-currency-amount').val());
         var secondCurr = $('#currency2-input').val();
         compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
     }
@@ -113,7 +113,7 @@ if (!localStorage.getItem('coinObject') || !localStorage.getItem('coinObjectRef'
 // default inputs
 $(document).ready(function(){
     // fill default values for inputs
-    $('#first-currency-amount').val(1);
+    $('#first-currency-amount').val(formatNumber(1));
     $('#currency2-input').val('United States Dollar');
     // disable the buttons by default
     $('#btn1').addClass('disabled');
@@ -161,9 +161,9 @@ function compareInputs(amount1, input1, amount2, input2, updatedSide) {
     if (input1 === input2) {
         // set opposing amount to inputted amount
         if (updatedSide === 1) {
-            $('#second-currency-amount').val(amount1);
+            $('#second-currency-amount').val(formatNumber(amount1));
         } else {
-            $('#first-currency-amount').val(amount2);
+            $('#first-currency-amount').val(formatNumber(amount2));
         };
         return
     }
@@ -225,9 +225,9 @@ function retrieveSingleCG(api, inputFirst, inputSecond, amountFirst, amountSecon
                 var vs_currency = data[combinedObjectRef[inputSecond]];
                 var val_input2_USD = vs_currency['usd'];
                 if (updatedSide === 1) {
-                    $('#second-currency-amount').val(amountFirst * 1 / val_input2_USD);
+                    $('#second-currency-amount').val(formatNumber(amountFirst * 1 / val_input2_USD));
                 } else {
-                    $('#first-currency-amount').val(amountSecond * val_input2_USD);
+                    $('#first-currency-amount').val(formatNumber(amountSecond * val_input2_USD));
                 };
             });
     } else {
@@ -238,9 +238,9 @@ function retrieveSingleCG(api, inputFirst, inputSecond, amountFirst, amountSecon
                 var vs_currency = data[combinedObjectRef[inputFirst]];
                 var val_input1_USD = vs_currency['usd'];
                 if (updatedSide === 1) {
-                    $('#second-currency-amount').val(amountFirst * val_input1_USD);
+                    $('#second-currency-amount').val(formatNumber(amountFirst * val_input1_USD));
                 } else {
-                    $('#first-currency-amount').val(amountSecond * 1 / val_input1_USD);
+                    $('#first-currency-amount').val(formatNumber(amountSecond * 1 / val_input1_USD));
                 };
             });
     };
@@ -255,9 +255,9 @@ function retrieveSingleF(api, inputFirst, inputSecond, amountFirst, amountSecond
                 var vs_currency = data['rates'];
                 var val_input2_USD = vs_currency['USD'];
                 if (updatedSide === 1) {
-                    $('#second-currency-amount').val(amountFirst * 1 / val_input2_USD);
+                    $('#second-currency-amount').val(formatNumber(amountFirst * 1 / val_input2_USD));
                 } else {
-                    $('#first-currency-amount').val(amountSecond * val_input2_USD);
+                    $('#first-currency-amount').val(formatNumber(amountSecond * val_input2_USD));
                 };
             });
     } else {
@@ -268,9 +268,9 @@ function retrieveSingleF(api, inputFirst, inputSecond, amountFirst, amountSecond
                 var vs_currency = data['rates'];
                 var val_input1_USD = vs_currency['USD'];
                 if (updatedSide === 1) {
-                    $('#second-currency-amount').val(amountFirst * val_input1_USD);
+                    $('#second-currency-amount').val(formatNumber(amountFirst * val_input1_USD));
                 } else {
-                    $('#first-currency-amount').val(amountSecond * 1 / val_input1_USD);
+                    $('#first-currency-amount').val(formatNumber(amountSecond * 1 / val_input1_USD));
                 };
             });
     };
@@ -310,15 +310,46 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
                     // Once both currencies are fetched in terms of USD, calculate relative value and display
                     if (updatedSide === 1) {
                         var val2 = amountFirst * val_input1_USD / val_input2_USD;
-                        $('#second-currency-amount').val(val2);
+                        $('#second-currency-amount').val(formatNumber(val2));
                     } else {
                         var val1 = amountSecond * val_input2_USD / val_input1_USD;
-                        $('#first-currency-amount').val(val1);
+                        $('#first-currency-amount').val(formatNumber(val1));
                     };
                 });
         });
 };
 
+function formatNumber(currAmount) {
+    // formats the currency amount to be 8 digits (including decimal points) at most
+
+    // if number is an integer, just have 2 decimal points
+    if (((currAmount % 1) === 0) && (currAmount <= 10**4)) {
+        return currAmount.toFixed(2);
+    };
+
+    // if the number is extremely small or large, use exponential notation
+    if (currAmount >= 10**10) {
+        return currAmount.toExponential(2);
+    };
+    if (currAmount >= 10**7) {
+        return currAmount.toExponential(3);
+    };
+
+    if (currAmount <= 10**-10) {
+        return currAmount.toExponential(2);
+    };
+    if (currAmount <= 10**-7) {
+        return currAmount.toExponential(3);
+    };
+    
+    var digitCount = 1;
+    var currAmountTemp = currAmount;
+    while (currAmountTemp / 10 >= 1) {
+        currAmountTemp /= 10;
+        digitCount++;
+    };
+    return parseFloat(currAmount.toFixed(8 - (digitCount + 1)));
+};
 
 
 // ***************
@@ -327,33 +358,33 @@ function retrieveDouble(originArray, inputFirst, inputSecond, amountFirst, amoun
 
 $('#first-currency-amount').on('input', function(event) {
     event.preventDefault();
-    var firstCurrAmount = $('#first-currency-amount').val();
+    var firstCurrAmount = parseFloat($('#first-currency-amount').val());
     var firstCurr = $('#currency1-input').val();
-    var secondCurrAmount = $('#second-currency-amount').val();
+    var secondCurrAmount = parseFloat($('#second-currency-amount').val());
     var secondCurr = $('#currency2-input').val();
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 1);
 });
 $('#currency1-input').on('input', function(event) {
     event.preventDefault();
-    var firstCurrAmount = $('#first-currency-amount').val();
+    var firstCurrAmount = parseFloat($('#first-currency-amount').val());
     var firstCurr = $('#currency1-input').val();
-    var secondCurrAmount = $('#second-currency-amount').val();
+    var secondCurrAmount = parseFloat($('#second-currency-amount').val());
     var secondCurr = $('#currency2-input').val();
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 1);
 });
 $('#second-currency-amount').on('input', function(event) {
     event.preventDefault();
-    var firstCurrAmount = $('#first-currency-amount').val();
+    var firstCurrAmount = parseFloat($('#first-currency-amount').val());
     var firstCurr = $('#currency1-input').val();
-    var secondCurrAmount = $('#second-currency-amount').val();
+    var secondCurrAmount = parseFloat($('#second-currency-amount').val());
     var secondCurr = $('#currency2-input').val();
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
 });
 $('#currency2-input').on('input', function(event) {
     event.preventDefault();
-    var firstCurrAmount = $('#first-currency-amount').val();
+    var firstCurrAmount = parseFloat($('#first-currency-amount').val());
     var firstCurr = $('#currency1-input').val();
-    var secondCurrAmount = $('#second-currency-amount').val();
+    var secondCurrAmount = parseFloat($('#second-currency-amount').val());
     var secondCurr = $('#currency2-input').val();
     compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 2);
 });
@@ -363,6 +394,8 @@ $('#currency2-input').on('input', function(event) {
 // ***************
 // CARD GENERATION
 // ***************
+
+//Generate information for first card on button press
 var formEl1 = document.getElementById("form1");
 var btnEl1 = $("#btn1");
 
@@ -370,7 +403,6 @@ function getMarketData1(event){
     event.preventDefault();
 
     $('#card1').removeClass("hide");
-    $('#marketSummary').html('');
 
     var mDT = $('#currency1-input').val();
     var mDTlower = mDT.toLowerCase();
@@ -378,44 +410,68 @@ function getMarketData1(event){
 
     var marketDataURL ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='+mDTfinal+ '&order=market_cap_desc%2Cvolume_desc&per_page=1&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d';
   
-fetch(marketDataURL)
-  .then(resm => {
-      return resm.json();
-  })
-  .then(mkdata => {
-      $('#marketSummary').append('<span class="card-title center-align">Market Information</span>')
-      $('#marketSummary').append('<img class="custom-card-image" src="'+mkdata[0].image+'">')
-      $('#marketSummary').append('<p><strong>'+mkdata[0].name+':</strong></p>')
-      $('#marketSummary').append('<p> Current Price: $'+mkdata[0].current_price+'</p>')
-      if (!mkdata[0].market_cap){
-      } else {
-        $('#marketSummary').append('<p> Market Cap: '+mkdata[0].market_cap+'</p>')
-      };
-      if (!mkdata[0].market_cap_rank){
-      } else {
-        $('#marketSummary').append('<p> Market Cap Rank: '+mkdata[0].market_cap_rank+'</p>')
-      }
-      $('#marketSummary').append('<p> All Time High: $'+mkdata[0].ath+'</p>')
-      $('#marketSummary').append('<p id="1h"> 1h Price Change: '+mkdata[0].price_change_percentage_1h_in_currency.toFixed(2)+'%</p>')
-      $('#marketSummary').append('<p id="24h"> 24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
-      $('#marketSummary').append('<p id="7d"> 7d Price Change: '+mkdata[0].price_change_percentage_7d_in_currency.toFixed(2)+'%</p>')
-
-      if (mkdata[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
-        $('#1h').addClass('goinDown')
-    }else{
-        $('#1h').addClass('goinUp')
-    }
-    if (mkdata[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
-        $('#24h').addClass('goinDown')
-    }else{
-        $('#24h').addClass('goinUp')
-    }
-    if (mkdata[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
-        $('#7d').addClass('goinDown')
-    }else{
-        $('#7d').addClass('goinUp')
-    }
-  })}
+ fetch(marketDataURL)
+    .then(resm => {
+       return resm.json();
+    })
+    .then(mkdata => {
+        $('#img1').attr("src", mkdata[0].image);
+        $('#mkn1').text(mkdata[0].name);
+        $('#cp1').text('Current Price: $'+mkdata[0].current_price.toFixed(2));
+        //use of conditional statements if no data is available for these values
+        if (!mkdata[0].market_cap){
+            $('#mc1').text('Market Cap: N/A');
+        } else {
+            $('#mc1').text('Market Cap: '+mkdata[0].market_cap);
+        };
+        if (!mkdata[0].market_cap_rank){
+            $('#mcr1').text('Market Cap Rank: N/A');
+        } else {
+            $('#mcr1').text('Market Cap Rank: '+mkdata[0].market_cap_rank);
+        };
+        if (!mkdata[0].ath) {
+            $('#ath1').text('All Time High: N/A');
+        } else {
+            $('#ath1').text('All Time High: $'+mkdata[0].ath.toFixed(2));
+        };
+        //
+        if (!mkdata[0].price_change_percentage_1h_in_currency) {
+            $('#1h').text('1h Price Change: N/A');
+        } else {
+            $('#1h').text('1h Price Change: '+mkdata[0].price_change_percentage_1h_in_currency.toFixed(2)+'%');
+            if (mkdata[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
+                $('#1h').addClass('goinDown')
+                $('#1h').removeClass('goinUp')
+            }else{
+                $('#1h').addClass('goinUp')
+                $('#1h').removeClass('goinDown')
+            }
+        };
+        if (!mkdata[0].price_change_percentage_24h_in_currency) {
+            $('#24h').text('24h Price Change: N/A');
+        } else {
+            $('#24h').text('24h Price Change: '+mkdata[0].price_change_percentage_24h_in_currency.toFixed(2)+'%');
+            if (mkdata[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
+                $('#24h').addClass('goinDown')
+                $('#24h').removeClass('goinUp')
+            }else{
+                $('#24h').addClass('goinUp')
+                $('#24h').removeClass('goinDown')
+            }
+        };
+        if (!mkdata[0].price_change_percentage_7d_in_currency) {
+            $('#7d').text('7d Price Change: N/A');
+        } else {
+            $('#7d').text('7d Price Change: '+mkdata[0].price_change_percentage_7d_in_currency.toFixed(2)+'%');
+            if (mkdata[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
+                $('#7d').addClass('goinDown')
+                $('#7d').removeClass('goinUp')
+            }else{
+                $('#7d').addClass('goinUp')
+                $('#7d').removeClass('goinDown')
+            }
+        };
+})}
 
 formEl1.addEventListener("submit", getMarketData1);
 
@@ -425,7 +481,6 @@ var btnEl2 = $("#btn2");
 function getMarketData2 (event){
     event.preventDefault();
     $('#card2').removeClass('hide');
-    $('#marketSummary2').html('');
     
     var mDT = $('#currency2-input').val();
     var mDTlower = mDT.toLowerCase();
@@ -435,42 +490,63 @@ function getMarketData2 (event){
 
     fetch(marketDataURL2)
         .then(resm => {
-      return resm.json();
-         })
-         .then(mkdata2 => {
-        $('#marketSummary2').append('<span class="card-title center-align">Market Information</span>')
-        $('#marketSummary2').append('<img class="custom-card-image" src="'+mkdata2[0].image+'">')
-        $('#marketSummary2').append('<p><strong>'+mkdata2[0].name+':</strong></p>')
-        $('#marketSummary2').append('<p> Current Price: $'+mkdata2[0].current_price+'</p>')
-       
-        if (!mkdata2[0].market_cap){
-        }else{
-        $('#marketSummary2').append('<p> Market Cap: '+mkdata2[0].market_cap+'</p>')
-        }
-        if (!mkdata2[0].market_cap_rank){
-        }else{
-            $('#marketSummary2').append('<p> Market Cap Rank: '+mkdata2[0].market_cap_rank+'</p>')
-        }
-        $('#marketSummary2').append('<p> All Time High: $'+mkdata2[0].ath+'</p>')
-        $('#marketSummary2').append('<p id="1h2"> 1h Price Change: '+mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2)+'%</p>')
-        $('#marketSummary2').append('<p id="24h2"> 24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%</p>')
-        $('#marketSummary2').append('<p id="7d2"> 7d Price Change: '+mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2)+'%</p>')
-
-        if (mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
-            $('#1h2').addClass('goinDown')
-        }else{
-            $('#1h2').addClass('goinUp')
-        }
-        if (mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
-            $('#24h2').addClass('goinDown')
-        }else{
-            $('#24h2').addClass('goinUp')
-        }
-        if (mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
-            $('#7d2').addClass('goinDown')
-        }else{
-            $('#7d2').addClass('goinUp')
-        }
+            return resm.json();
+        })
+        .then(mkdata2 => {
+            $('#img2').attr("src", mkdata2[0].image);
+            $('#mkn2').text(mkdata2[0].name);
+            $('#cp2').text('Current Price: $'+mkdata2[0].current_price.toFixed(2));
+            if (!mkdata2[0].market_cap){
+                $('#mc2').text('Market Cap: N/A')
+            }else{
+                $('#mc2').text('Market Cap: '+mkdata2[0].market_cap)
+            }
+            if (!mkdata2[0].market_cap_rank){
+                $('#mcr2').text('Market Cap Rank: N/A')
+            }else{
+                $('#mcr2').text('Market Cap Rank: '+mkdata2[0].market_cap_rank)
+            }
+            if (!mkdata2[0].ath) {
+                $('#ath2').text('All Time High: N/A');
+            } else {
+                $('#ath2').text('All Time High: $'+mkdata2[0].ath.toFixed(2));
+            };
+            if (!mkdata2[0].price_change_percentage_1h_in_currency) {
+                $('#1h2').text('1h Price Change: N/A');
+            } else {
+                $('#1h2').text('1h Price Change: '+mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2)+'%');
+                if (mkdata2[0].price_change_percentage_1h_in_currency.toFixed(2) < 0){
+                    $('#1h2').addClass('goinDown')
+                    $('#1h2').removeClass('goinUp')
+                } else {
+                    $('#1h2').addClass('goinUp')
+                    $('#1h2').removeClass('goinDown')
+                }
+            };
+            if (!mkdata2[0].price_change_percentage_24h_in_currency) {
+                $('#24h2').text('24h Price Change: N/A');
+            } else {
+                $('#24h2').text('24h Price Change: '+mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2)+'%');
+                if (mkdata2[0].price_change_percentage_24h_in_currency.toFixed(2) < 0){
+                    $('#24h2').addClass('goinDown')
+                    $('#24h2').removeClass('goinUp')
+                }else{
+                    $('#24h2').addClass('goinUp')
+                    $('#24h2').removeClass('goinDown')
+                }
+            };
+            if (!mkdata2[0].price_change_percentage_7d_in_currency) {
+                $('#7d2').text('7d Price Change: N/A');
+            } else {
+                $('#7d2').text('7d Price Change: '+mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2)+'%');
+                if (mkdata2[0].price_change_percentage_7d_in_currency.toFixed(2) < 0){
+                    $('#7d2').addClass('goinDown')
+                    $('#7d2').removeClass('goinUp')
+                }else{
+                    $('#7d2').addClass('goinUp')
+                    $('#7d2').removeClass('goinDown')
+                }
+            };
 })}
 
 formEl2.addEventListener("submit", getMarketData2,);
@@ -486,7 +562,18 @@ function generateTrending() {
       .then(res => res.json())
       .then(top7 => {
         for (let i = 0; i < top7.coins.length; i++){
-            $('.trend').append('<a>' + top7.coins[i].item.name + '</a>')
+            // $('.trend').append('<a>' + top7.coins[i].item.name + '</a>')
+            $('#trend' + i).html(top7.coins[i].item.name);
+            $('#trend' + i).on('click', function (event) {
+                event.preventDefault();
+
+                $('#currency1-input').val(top7.coins[i].item.name);
+                var firstCurrAmount = parseFloat($('#first-currency-amount').val());
+                var firstCurr = $('#currency1-input').val();
+                var secondCurrAmount = parseFloat($('#second-currency-amount').val());
+                var secondCurr = $('#currency2-input').val();
+                compareInputs(firstCurrAmount, firstCurr, secondCurrAmount, secondCurr, 1);
+            });
         }
       })
  };
@@ -495,4 +582,3 @@ function generateTrending() {
 $("#webticker-update").webTicker({
   height:'75px'
 });
-
